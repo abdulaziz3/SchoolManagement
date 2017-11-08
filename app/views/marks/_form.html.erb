@@ -1,0 +1,33 @@
+<%= form_for(@mark) do |f| %>
+  <% if @mark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mark.errors.count, "error") %> prohibited this mark from being saved:</h2>
+
+      <ul>
+      <% @mark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mark %><br>
+    <%= f.number_field :mark %>
+  </div>
+  <div class="field">
+    <%= f.label :student_id %><br>
+    <%= f.collection_select :student_id, Student.all, :id, :l_name, prompt: true %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_id %><br>
+    <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, prompt: true %>
+  </div>
+  <div class="field">
+    <%= f.label :grade_id %><br>
+    <%= f.collection_select :grade_id, Grade.all, :id, :grade_name, prompt: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

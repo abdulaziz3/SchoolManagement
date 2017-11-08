@@ -1,0 +1,19 @@
+<h1 align = "center"> <%= @student.f_name %> 's profile </h1>
+<div class="row">
+  <div class="well col-xs-6 col-xs-offset-3 center">
+    <p></br>Fisrt name : <%= @student.l_name %></p>
+    <p></br>Address : <%= @student.address%></p>
+    <p></br>City : <%= @student.city%></p>
+    <p></br>post code : <%= @student.post_code%></p>
+    <p></br>Nationality : <%= @student.nationality%></p>
+    <p></br>Gender : <%= @student.gender%></p>
+    <p></br>Date of Birth : <%= @student.dob%></p>
+    <p></br>Phone : <%= @student.phone%></p>
+    <p></br>Email : <%= @student.email%></p>
+    <div class="student-action">
+      <%= link_to 'Edit profile', edit_student_path(@student), class: "btn btn-xs btn-primary" %>
+      <%= link_to 'Delete Profile', @student, method: :delete, data: {confirm: "Are you sure ?"}, class: "btn btn-xs btn-danger" %>
+      <%= link_to 'Home Page', root_path, class: "btn btn-xs btn-success"%>
+    </div>
+  </div>
+</div>
