@@ -7,15 +7,14 @@
 
 <p><strong>subjects</strong></p>
 <% @grade.subjects.each do |subject| %>
-	<%= subject.subject_name %> </br>
+	<%= link_to "#{subject.subject_name}", subject_path(subject) %> </br>
 <% end %>
 
 </br>
 
 <p><strong>Students</strong></p>
 <% @grade.students.each do |student| %>
-  <%= student.f_name %>
-  <%= student.l_name %> </br>
+  <%=link_to "#{student.full_name}", student_path(student) %> </br>
 <% end %>
 
 </br>

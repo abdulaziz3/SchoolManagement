@@ -9,15 +9,19 @@ class Parent < ActiveRecord::Base
 		 uniqueness: {case_sensitvity: false},
 		 format: { with: VALID_EMAIL_VAL }
      before_save {self.email = email.downcase}
-     validate :unique_email
+
+     validate :unique_user_email
+     validate :unique_student_email
 
   def full_name
   	"#{f_name} #{l_name}"
   end
 
-	def unique_email
-	  self.errors.add(:email, 'is already taken')
-        if Student.where(email: self.email).exists? ||
-           User.where(email: self.email).exists?
+  def unique_student_email
+		self.errors.add(:email, 'Email is already taken by student') if Student.where(email: self.email).exists?
+	end
+
+	def unique_user_email
+		self.errors.add(:email, 'Email is already taken by staff') if User.where(email: self.email).exists?
 	end
 end

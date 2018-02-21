@@ -20,7 +20,7 @@
       <td><%= lesson.id %></td>
       <td>|</td>
       <td><%= lesson.lesson_name %></td>
-      <td><%= lesson.lesson_note %></td>
+      <td><%= truncate lesson.lesson_note, length: 15 %></td>
       <td><%= link_to lesson.file_name, lesson.lesson_file_url %></td>
       <td><%= lesson.subject.subject_name %></td>
       <td>|</td>

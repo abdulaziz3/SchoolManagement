@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 
 	VALID_EMAIL_VAL = /\A[\w+\-.]+@[A-z\d\-.]+\.[a-z]+\z/i
 	before_save {self.email = email.downcase}
-	validate :unique_email
+	validate :unique_student_email
+	validate :unique_parent_email
 
 	belongs_to :role
 	has_many :subjects
@@ -31,10 +32,16 @@ class User < ActiveRecord::Base
 		where("f_name LIKE ? OR l_name LIKE ? OR email LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
 	end
 
-	def unique_email
-		self.errors.add(:email, 'is already taken')
-        if Student.where(email: self.email).exists? ||
-           Parent.where(email: self.email).exists?
+	def self.searchAll(query)
+    joins(:student).where("f_name LIKE ? OR l_name LIKE ? OR email LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
+	end
+
+	def unique_student_email
+		self.errors.add(:email, 'Email is already taken by student') if Student.where(email: self.email).exists?
+	end
+
+	def unique_parent_email
+		self.errors.add(:email, 'Email is already taken by Parent') if Parent.where(email: self.email).exists?
 	end
 
 end
