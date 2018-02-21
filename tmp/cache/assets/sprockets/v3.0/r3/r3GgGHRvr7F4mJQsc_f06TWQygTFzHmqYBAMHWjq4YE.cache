@@ -1,0 +1,10 @@
+I"Ö(function() {
+  $(document).on("turbolinks:load", function() {
+    $('.show_attendance').hide();
+    return $('.get_attendance').click(function() {
+      $('.show_attendance').show();
+    });
+  });
+
+}).call(this);
+:ET

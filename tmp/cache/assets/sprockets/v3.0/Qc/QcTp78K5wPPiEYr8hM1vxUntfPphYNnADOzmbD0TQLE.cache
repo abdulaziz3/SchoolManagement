@@ -1,0 +1,16 @@
+I"(function() {
+  $(document).on("turbolinks:load", function() {
+    var gradeValue, url;
+    url = document.location.href;
+    gradeValue = url.substring(url.indexOf("gradeValue=")).substring(11);
+    if (gradeValue.length === 1) {
+      document.getElementById('post_subject_id').value = gradeValue;
+      return $('.selectGradeForAttend').change(function() {
+        gradeValue = $('.selectGradeForAttend').val();
+        return document.url = "/student_attendances/new?gradeValue=" + gradeValue;
+      });
+    }
+  });
+
+}).call(this);
+:ET

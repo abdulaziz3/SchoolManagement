@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Att status:</strong>
+  <%= @attendance_description.att_status %>
+</p>
+
+<%= link_to 'Edit', edit_attendance_description_path(@attendance_description) %> |
+<%= link_to 'Back', attendance_descriptions_path %>

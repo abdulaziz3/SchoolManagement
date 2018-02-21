@@ -9,7 +9,14 @@ class ApplicationController < ActionController::Base
     unless student_signed_in?
       store_location
       redirect_to student_login_path
-      flash[:danger] = "'Students' must sign in to get access"
+      flash[:danger] = "Student must sing in to get access"
+    end
+  end
+
+  def authorised
+    unless student_signed_in? || parent_signed_in? || user_signed_in?
+      redirect_to root_path
+      flash[:danger] = "sign in first"
     end
   end
 
@@ -17,7 +24,15 @@ class ApplicationController < ActionController::Base
     unless user_signed_in?
       store_location
       redirect_to user_login_path
-      flash[:danger] = "'Users' must sign in to get access"
+      flash[:danger] = "Staff must sing in to get access"
+    end
+  end
+
+  def parent_authorise
+    unless parent_signed_in?
+      store_location
+      redirect_to parent_login_path
+      flash[:danger] = "Parent must sing in to get access"
     end
   end
 
@@ -30,7 +45,7 @@ end
 
   def require_admin
     if !user_signed_in? || (user_signed_in? and !@current_user.role == "admin")
-      flash[:danger] = "Only admins can perform that action"
+      flash[:danger] = "Only admin can perform this action"
       #redirect_to root_path
       redirect_to session[:return_to] || root_path
     end

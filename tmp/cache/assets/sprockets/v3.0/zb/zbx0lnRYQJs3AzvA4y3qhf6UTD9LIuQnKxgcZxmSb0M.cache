@@ -1,0 +1,25 @@
+I"'(function() {
+  $(document).on("turbolinks:load", function() {
+    var attend, escaped_make, grade, gradeValue, option, url;
+    url = document.location.href;
+    gradeValue = url.substring(url.indexOf("gradeValue=")).substring(11);
+    if (gradeValue.length === 1) {
+      document.getElementById('post_subject_id').value = gradeValue;
+      grade = '.studentAttendanceList'.html;
+      $('.selectGradeForAttend').change(function() {});
+      gradeValue = $('.selectGradeForAttend').val();
+      document.location.href = "/student_attendances/new?gradeValue=" + gradeValue;
+      attend = jQuery('.selectGradeForAttend').children('option').filter(':selected').text();
+      escaped_make = attend.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      option = $(grade).filter("optgroup[label='" + escaped_make + "']").html();
+      if (option) {
+        $('.studentAttendanceList').html(option);
+        return $('.studentAttendanceList').parent().show();
+      } else {
+        return $('.studentAttendanceList').hide();
+      }
+    }
+  });
+
+}).call(this);
+:ET

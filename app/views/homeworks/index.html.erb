@@ -1,0 +1,36 @@
+<h1 align="center"> Homeworks</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th data-field="#" data-sortable="true">ID</th>
+      <th data-field="#" data-sortable="true">Homework</th>
+      <th data-field="#" data-sortable="true">Description</th>
+      <th data-field="#" data-sortable="true">Marking total</th>
+      <th data-field="#" data-sortable="true">Teacher name</th>
+      <th data-field="#" data-sortable="true">Subject name</th>
+      <th data-field="#" data-sortable="true">|</th>
+      <th data-field="#" data-sortable="true">Show</th>
+      <th data-field="#" data-sortable="true">Edit</th>
+      <th data-field="#" data-sortable="true">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homeworks.each do |homework| %>
+    <tr data-link="<%= homeworks_path(homework) %>">
+      <td><%=homework.id%></td>
+      <td><%=homework.homework_name%></td>
+      <td><%=homework.description%></td>
+      <td><%=homework.marking%></td>
+      <td><%=homework.subject.user.full_name%></td>
+      <td><%=homework.subject.subject_name%></td>
+      <td>|</td>
+      <td><%= link_to 'Show', homework, class: "btn btn-primary btn-xs glyphicon glyphicon-file" %></td>
+      <td><%= link_to 'edit', edit_homework_path(homework), class: "btn btn-primary btn-xs glyphicon glyphicon-pencil" %></td>
+      <td><%= link_to 'delete', homework , method: :delete, data: {confirm: "Are you sure ? "},class: "btn btn-primary btn-xs glyphicon glyphicon-trash" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Homework', new_homework_path %>

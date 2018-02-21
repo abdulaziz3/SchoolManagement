@@ -1,0 +1,7 @@
+I"€(function() {
+  $(document).on("turbolinks:load", function() {
+    return $('.attendance-select').submit;
+  });
+
+}).call(this);
+:ET

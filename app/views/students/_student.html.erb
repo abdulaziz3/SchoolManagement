@@ -1,24 +1,39 @@
+
 <table class="table table-hover">
 		<thead>
-    		<tr>
-			<th data-field="#" data-sortable="true"> ID</th>
-			<th data-field="Last name" data-sortable="true">Last Name</th>
-      			<th data-field="First name" data-sortable="true">First Name</th>
-			<th data-field="E-mail" data-sortable="true">E-mail</th>
-			<th data-field="City" data-sortable="true">City</th>
-    		</tr>
-  		</thead>
+    	<tr>
+				<th data-field="#" data-sortable="true"> ID</th>
+				<th data-field="#" data-sortable="true">|</th>
+				<th data-field="Last name" data-sortable="true">Last Name</th>
+      	<th data-field="First name" data-sortable="true">First Name</th>
+				<th data-field="E-mail" data-sortable="true">E-mail</th>
+				<th data-field="City" data-sortable="true">City</th>
+				<th data-field="Grade" data-sortable="true">Grade</th>
+				<th data-field="Parent" data-sortable="true">Parent</th>
+				<th data-field="#" data-sortable="true">|</th>
+      	<th data-field="#" data-sortable="true">Show</th>
+      	<th data-field="#" data-sortable="true">Edit</th>
+      	<th data-field="#" data-sortable="true">Delete</th>
+    	</tr>
+  	</thead>
 
  	 	<tbody>
-   			 <% @students.each do |student| %>
-     	 		<tr data-link="<%= students_path(student) %>">
+   		<% @students.each do |student| %>
+     	 	<tr data-link="<%= students_path(student) %>">
 					<td><%= student.id %></td>
-      			 		<td><%= student.l_name %></td>
-      			 		<td><%= student.f_name %></td>
+					<td>|</td>
+      		<td><%= student.l_name %></td>
+      		<td><%= student.f_name %></td>
 					<td><%= student.email %></td>
 					<td><%= student.city %></td>
-      			</tr>
-   	 		<% end %>
+					<td><%= student.grade.grade_name %></td>
+					<td><%= student.parent_id %></td>
+					<td>|</td>
+        	<td><%= link_to 'Show', student, class: "btn btn-primary btn-xs glyphicon glyphicon-file" %></td>
+        	<td><%= link_to 'Edit', edit_student_path(student),class: "btn btn-primary btn-xs glyphicon glyphicon-pencil" %></td>
+        	<td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-xs glyphicon glyphicon-trash" %></td>
+      	</tr>
+   	 	<% end %>
 		</tbody>
 	</table>
-<%= link_to 'Home Page', root_path, class: "btn btn-md btn-success pull-right" %>
+<%= link_to 'Home Page', root_path, class: "btn btn-primary btn-block btn-md" %>

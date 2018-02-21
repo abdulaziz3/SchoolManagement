@@ -18,7 +18,7 @@ class MarksControllerTest < ActionController::TestCase
 
   test "should create mark" do
     assert_difference('Mark.count') do
-      post :create, mark: { grade_id: @mark.grade_id, mark: @mark.mark, student_id: @mark.student_id, subject_id: @mark.subject_id }
+      post :create, mark: { mark: @mark.mark, student_id: @mark.student_id, subject_id: @mark.subject_id, user_id: @mark.user_id }
     end
 
     assert_redirected_to mark_path(assigns(:mark))
@@ -35,7 +35,7 @@ class MarksControllerTest < ActionController::TestCase
   end
 
   test "should update mark" do
-    patch :update, id: @mark, mark: { grade_id: @mark.grade_id, mark: @mark.mark, student_id: @mark.student_id, subject_id: @mark.subject_id }
+    patch :update, id: @mark, mark: { mark: @mark.mark, student_id: @mark.student_id, subject_id: @mark.subject_id, user_id: @mark.user_id }
     assert_redirected_to mark_path(assigns(:mark))
   end
 

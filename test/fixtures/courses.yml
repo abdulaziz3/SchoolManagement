@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_name: MyString
+  start_date: 2018-02-10
+  end_date: 2018-02-10
+  current_course: false
+
+two:
+  course_name: MyString
+  start_date: 2018-02-10
+  end_date: 2018-02-10
+  current_course: false

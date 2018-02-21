@@ -1,6 +1,9 @@
-<h1 align = "center"> <%= @user.l_name %> 's profile </h1>
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'layouts/sidebar' %>
+<% end %>
+
 <div class="row">
-  <div class="well col-xs-6 col-xs-offset-3 center">
+  <div class="well col-xs-6 col-xs-offset-4 center">
     <p></br>First name : <%= @user.f_name %></p>
     <p></br>Last name : <%= @user.l_name %></p>
     <p></br>Nationality : <%= @user.nationality%></p>
@@ -8,7 +11,8 @@
     <p></br>Gender : <%= @user.gender%></p>
     <p></br>Date of Birth : <%= @user.dob%></p>
     <p></br>Email : <%= @user.email%></p>
-    <p></br>Role : <%= @user.role%></p>
+    <p></br>Role : <%= @user.role.role_name%></p>
+
     <div class="student-action">
       <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-xs btn-primary" %>
       <%= link_to 'Delete Profile', @user, method: :delete, data: {confirm: "Are you sure ?"}, class: "btn btn-xs btn-danger" %>

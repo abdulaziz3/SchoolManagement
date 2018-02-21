@@ -1,13 +1,23 @@
 Rails.application.routes.draw do
 
+  resources :messages
+  resources :lessons
+  resources :courses
+  resources :student_attendances
+  resources :attendance_descriptions
+  resources :student_homeworks
+  resources :parents
+  resources :homeworks
+  resources :marks
+  resources :roles
+  resources :student_subjects
   resources :users
   resources :grades
   resources :marks
-  resources :subject_teachers
   resources :subjects
   resources :students
 
-  # Sessions Log in - Log out
+  # Sessions Log in - Log out // user && studends
   controller :sessions do
 		get 'student_login' => :new
 		post 'student_login' => :create
@@ -18,13 +28,28 @@ Rails.application.routes.draw do
     post 'user_login' => :usercreate
     get 'user_logout' => :userdestroy
     delete 'user_logout' => :userdestroy
+
+    get 'parent_login' => :parentnew
+    post 'parent_login' => :parentcreate
+    get 'parent_logout' => :parentdestroy
+    delete 'parent_logout' => :parentdestroy
 	end
+
+  get 'search' => 'users#search'
+  get 'searchAttendance' => 'student_attendances#searchAttendance'
+  # get 'searchAttenanceDate' => 'student_attendances#searchAttendanceDate'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'pages/home'
   get 'pages/about'
   get 'pages/faqs'
+
+  #post 'attendances/saveAttendance'
+  #get 'student_attendances/new/:gradeValue'
+  post 'student_attendances/saveAttendance'
+  post 'marks/saveMarks'
+
 
   # You can have the root of your site routed with "root"
   root :to => "pages#home"

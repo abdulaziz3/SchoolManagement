@@ -1,0 +1,5 @@
+I"J(function() {
+  $(document).ready(attendance.query);
+
+}).call(this);
+:ET

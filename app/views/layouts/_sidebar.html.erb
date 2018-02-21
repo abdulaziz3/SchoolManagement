@@ -1,0 +1,122 @@
+<% if student_signed_in? %>
+
+<div class="nav-side-menu">
+    <div class="brand"><%= @current_student.full_name %></div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+      <ul id="menu-content" class="menu-content collapse out">
+        <li align = "center">
+          <a href="#">
+            <i class="fa fa-dashboard fa-lg">Dashboard</i>
+          </a>
+        </li>
+
+        <li data-toggle="collapse" data-target="#informations" class="collapsed">
+          <a><i class="fa fa-globe fa-lg">User Information</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="informations">
+          <li><%= @student.nationality%></li>
+          <li><%= @student.email%></li>
+          <li><%= @student.grade.grade_name%></li>
+          <i><li><%= link_to "Edit Profile", edit_student_path(@student) %></li></i>
+        </ul>
+        <!-- &amp; -->
+
+        <li data-toggle="collapse" data-target="#subjects" class="collapsed">
+          <a><i class="fa fa-gift fa-lg">Subjects</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="subjects">
+          <% @student.subjects.each do |subject| %>
+            <li><%= link_to "#{subject.subject_name}", subject_path(subject)%> :  <%=link_to "#{subject.user.full_name}", user_path(subject.user) %> </li>
+          <% end %>
+        </ul>
+        <!-- -->
+
+        <li data-toggle="collapse" data-target="#homeworks" class="collapsed">
+          <a><i class="fa fa-globe fa-lg">Homeworks</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="homeworks">
+          <% @student.homeworks.each do |homework| %>
+            <li><%= link_to "#{homework.homework_name}", homework_path(homework) %> : <%=link_to "#{homework.subject.subject_name}", subject_path(homework.subject)%></li>
+          <% end %>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#teachers" class="collapsed">
+          <a><i class="fa fa-car fa-lg">Teachers</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="teachers">
+          <% @users = User.all %>
+          <% @users.each do |user| %>
+            <i><li><%= link_to "#{user.full_name}", user_path(user) %></li>
+          <% end %>
+        </ul>
+
+        <li>
+          <a>
+            <i class="fa fa-users fa-lg"><%= link_to "Edit Profile", edit_student_path(@student) %></i>
+            <span class="arrow"></span>
+          </a>
+        </li>
+
+      </ul>
+   </div>
+  </div>
+
+<% end %>
+
+<% if user_signed_in? %>
+
+<div class="nav-side-menu">
+    <div class="brand"><%= @current_user.full_name %></div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+
+      <ul id="menu-content" class="menu-content collapse out">
+        <li align = "center">
+          <a href="#">
+            <i class="fa fa-dashboard fa-lg">Dashboard</i>
+          </a>
+        </li>
+
+        <li data-toggle="collapse" data-target="#informations" class="collapsed">
+          <a><i class="fa fa-globe fa-lg">User Information</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="informations">
+          <li><%= @user.nationality%></li>
+          <li><%= @user.email%></li>
+          <i><li><%= link_to "Edit Profile", edit_user_path(@user) %></li></i>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#subjects" class="collapsed">
+          <a><i class="fa fa-gift fa-lg">Subjects</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="subjects">
+          <% @user.subjects.each do |subject| %>
+            <li><%= link_to "#{subject.subject_name}", subject_path(subject) %></li>
+          <% end %>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#homeworks" class="collapsed">
+          <a><i class="fa fa-globe fa-lg">Homeworks</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="homeworks">
+          <% @user.homeworks.each do |homework| %>
+            <li><%= link_to "#{homework.homework_name}", homework_path(homework) %></li>
+          <% end %>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#teachers" class="collapsed">
+          <a><i class="fa fa-car fa-lg">Students</i><span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="teachers">
+          <% @students = Student.all %>
+          <% @students.each do |student| %>
+            <i><li><%= link_to "#{student.full_name}", student_path(student) %></li>
+          <% end %>
+        </ul>
+
+      </ul>
+   </div>
+  </div>
+
+<% end %>

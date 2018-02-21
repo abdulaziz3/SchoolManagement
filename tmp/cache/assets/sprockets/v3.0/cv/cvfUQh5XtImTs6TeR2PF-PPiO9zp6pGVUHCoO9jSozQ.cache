@@ -1,0 +1,25 @@
+I"a(function() {
+  $(document).on("turbolinks:load", function() {
+    var home;
+    $('.selectHomwork').parent().hide();
+    $('.hm_label').parent().hide();
+    home = $('.selectHomwork').html();
+    return $('.grade-select').change(function() {
+      var escaped_make, options, subj;
+      subj = jQuery('.selectSubject').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      if (options) {
+        $('.selectHomwork').html(options);
+        $('.selectHomwork').parent().show();
+        return $('.hm_label').parent().show();
+      } else {
+        $('.selectHomwork').empty();
+        $('.selectHomwork').parent().hide();
+        return $('.hm_label').parent().hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET

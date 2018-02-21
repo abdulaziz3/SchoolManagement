@@ -1,0 +1,7 @@
+<div class="navbar-form navbar-left">
+	<div class="form-group">
+          <%= form_tag(searchAttendance_path, method: :get) do %>
+          <%= text_field_tag(:attendQuery, params[:attendQuery], class: "form-control", placeholder: "Search") %>
+    </div>
+    	<% end %>
+</div>

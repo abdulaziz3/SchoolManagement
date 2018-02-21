@@ -16,11 +16,20 @@ module ApplicationHelper
       end
     end
 
-#    def gravatar_for(student, option = {size: 80})
-#      gravatar_id = Digest::MD5::hexdigest(student.email.downcase)
-#      size = option[:size]
-#      gravatar_url = "https://secure.gravatar.comm/avatar/#{gravatar_id}?s=#{size}"
-#      image_tag(gravatar_url, alt: student.email, class: "img-circle")
-#    end
+    def parent_signed_in?
+      if session[:parent_id].nil?
+        return
+      else
+        @current_parent = Parent.find_by_id(session[:parent_id])
+      end
+    end
+
+    def week_days
+      monday to friday
+    end
+
+    def time_of_day
+      nine to four
+    end
 
 end

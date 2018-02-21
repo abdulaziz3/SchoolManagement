@@ -11,7 +11,9 @@
   <div class="wrapper">
     <%= render 'layouts/navigation' %>
     <%= render 'layouts/messages' %>
+
     <div class = "container" >
+      <%= yield :sidebar %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>

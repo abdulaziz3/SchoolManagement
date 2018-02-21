@@ -1,0 +1,1 @@
+json.partial! "attendance_descriptions/attendance_description", attendance_description: @attendance_description

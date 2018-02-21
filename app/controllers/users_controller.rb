@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :user_authorise, only: [:update, :edit, :show]
-  before_action :require_admin, only: [:destroy, :index]
+  before_action :user_authorise, only: [:update, :edit]
+  before_action :require_admin, only: [:destroy]
+  before_filter :require_admin, :only => [:destroy]
+  before_action :authorised, only: [:show, :index]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 15)
@@ -9,6 +11,17 @@ class UsersController < ApplicationController
 
   def show
     @user  = User.find(params[:id])
+  end
+
+  def search
+      @users = User.paginate(page: params[:page], per_page: 15).search params[:query]
+      unless @users.empty?
+        render 'index'
+      else
+        flash[:danger] = "NO Teacher were found"
+        @user = User.all
+        render 'index'
+      end
   end
 
   def new
@@ -23,7 +36,7 @@ class UsersController < ApplicationController
     if @user.save
       #UserMailer.welcome(@user).deliver_now
       session[:user_id] = @user.id
-      flash[:cuccess] = "Welcom to the School Management System #{@user.f_name}"
+      flash[:success] = "Welcom to the School Management System #{@user.f_name}"
       redirect_to user_path(@user)
     else
       render 'new'
@@ -54,6 +67,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:f_name, :l_name, :email, :dob, :password, :password_confirmation, :nationality, :national_id, :gender, :role)
+      params.require(:user).permit(:f_name, :l_name, :email, :dob, :password, :password_confirmation, :nationality, :national_id, :gender, :role_id)
     end
 end

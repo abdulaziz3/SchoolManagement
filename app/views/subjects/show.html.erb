@@ -1,14 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Subject name:</strong>
-  <%= @subject.subject_name %>
-</p>
-
-<p>
-  <strong>Subject code:</strong>
-  <%= @subject.subject_code %>
-</p>
-
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+<div class="row">
+  <div class="well col-xs-10 col-xs-offset-1">
+    <div class="caption">
+      <h3 class = "center"><%= @subject.subject_name %></h3>
+      <p>subject code: <%= @subject.subject_code %> </p>
+      <p>Grade: <%= @subject.grade.grade_name %></p>
+      <p>Teacher: <%= @subject.user.full_name %></p>
+    </div>
+    <%= link_to 'Viewing', subjects_path, class: "btn btn-md btn-success glyphicon glyphicon-file" %>
+    <%= link_to 'Editing', edit_subject_path(@subject), class: "btn btn-md btn-primary glyphicon glyphicon-pencil" %>
+		<%= link_to 'Delete', subject_path(@subject), method: :delete, data: {confirm: "Are you sure ? "},
+						class: "btn btn-md btn-danger glyphicon glyphicon-trash"%>
+  </div>
+  <div class="col-lg-offset-1 col-lg-6">
+    <%= link_to "new lesson", new_lesson_path, class: "btn btn-secondary btn-lg " %>
+  </div>
+</div>

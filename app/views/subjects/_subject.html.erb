@@ -1,0 +1,18 @@
+<div class="row">
+  <% object.each do |subject| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption">
+        <h4 align = "center"> <%= link_to subject.subject_name, subject_path(subject) %> </h4>
+        <p> subject code: <%= subject.subject_code %></p>
+        <p> Grade : <%= subject.grade.grade_name%></p>
+        <p>Teacher: <%= subject.user.full_name %></p>
+        <div class="well product-action">
+          <%= link_to 'Editing', edit_subject_path(subject), class: "btn btn-md btn-success glyphicon glyphicon-pencil" %>
+          <%= link_to 'Delete!', subject, method: :delete, data: {confirm: "Are you sure ? "}, class: "btn btn-md btn-danger glyphicon glyphicon-trash " %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%end%>
+</div>

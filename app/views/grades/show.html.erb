@@ -1,9 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1 align="center"><%= "Grade: " + @grade.grade_name %></h1>
+<div align="center">
+    <div class="row">
+      <span class="badge"><%= link_to "Edit Grade Name", edit_grade_path(@grade) %></span>
+    </div>
+</div>
 
-<p>
-  <strong>Grade name:</strong>
-  <%= @grade.grade_name %>
-</p>
+<p><strong>subjects</strong></p>
+<% @grade.subjects.each do |subject| %>
+	<%= subject.subject_name %> </br>
+<% end %>
 
-<%= link_to 'Edit', edit_grade_path(@grade) %> |
-<%= link_to 'Back', grades_path %>
+</br>
+
+<p><strong>Students</strong></p>
+<% @grade.students.each do |student| %>
+  <%= student.f_name %>
+  <%= student.l_name %> </br>
+<% end %>
+
+</br>
+<%= link_to 'edit', edit_grade_path(@grade) %>
+<%= link_to 'back', root_path %>

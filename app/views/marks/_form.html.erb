@@ -1,33 +1,55 @@
-<%= form_for(@mark) do |f| %>
-  <% if @mark.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mark.errors.count, "error") %> prohibited this mark from being saved:</h2>
+<%= render 'shared/errors', object: @mark %>
 
-      <ul>
-      <% @mark.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class='row'>
+  <!--Start -->
+  <div class="col-xs-12">
+    <%= form_tag('saveMarks', remote: true) do %>
+
+      <div class = "form-group">
+        <div class="control-label col-sm-2 col-sm-offset-1">
+          <%= label_tag :subject, "Subject" %>
+        </div>
+        <div class="col-sm-8">
+          <%= collection_select :post, :marks_subject_id, Subject.where('user_id =?',@marks_user_id), :id, :subject_name, {:include_blank => "Select Subject"}, {class: 'form-control selectSubject'} %>
+        </div>
+      </div><br>
+      <br>
+      <div class="form-group"></br>
+        <div class="control-label col-sm-2 col-sm-offset-1">
+          <%= label_tag :homework, "Homework" ,class: 'homeworklabel'%>
+        </div>
+        <div class="col-sm-8">
+          <%= grouped_collection_select :post, :marks_homework_id, Subject.all, :homeworks, :subject_name, :id, :homework_name, {:include_blank => "select Homework"}, {class: 'form-control selectHomwork'} %>
+        </div>
+        <!-- <%= select_tag "homeworkid", options_for_select(Homework.all.collect{ |u| [u.homework_name, u.id ]}), class: "selectHmwork"%> -->
+      </div><br><br>
+      <% if @displayStudent %>
+        <div id="studentMarksList">
+          <table class="table table-hover col-sm-offset-1">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% Student.joins(:student_homeworks).where("homework_id = ?", @homeworkValue).each do |student| %>
+              <!--% Student.where('student.grade_id =?', @subject_grade_id).each do|student|%-->
+                <tr>
+                  <th><%= student.id %></th>
+                  <th><%= label_tag student.id, student.full_name %> <!--<%= hidden_field_tag(student.full_name, value = student.id) %>--></th>
+                  <th><%= text_field student.id, "marks", class: 'col col-sm-5 form-control'%></th>
+                  <th><%= text_field student.id, "comments", class: 'col col-sm-5 form-control'%></th>
+                </tr>
+              <% end %>
+          </tbody>
+          </table>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :mark %><br>
-    <%= f.number_field :mark %>
+      <%= submit_tag 'submit Marks', class: "btn btn-primary btn-lg col-sm-8 col-sm-offset-3" %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :student_id %><br>
-    <%= f.collection_select :student_id, Student.all, :id, :l_name, prompt: true %>
-  </div>
-  <div class="field">
-    <%= f.label :subject_id %><br>
-    <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, prompt: true %>
-  </div>
-  <div class="field">
-    <%= f.label :grade_id %><br>
-    <%= f.collection_select :grade_id, Grade.all, :id, :grade_name, prompt: true %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<!--End -->
+</div>

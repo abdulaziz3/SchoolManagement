@@ -2,8 +2,7 @@
 		<thead>
     		<tr>
 			<th data-field="#" data-sortable="true"> ID</th>
-			<th data-field="Last name" data-sortable="true">Last Name</th>
-      <th data-field="First name" data-sortable="true">First Name</th>
+			<th data-field="Name" data-sortable="true">Name</th>
 			<th data-field="Nationality" data-sortable="true">nationality</th>
 			<th data-field="national_id" data-sortable="true">national_id</th>
 			<th data-field="E-mail" data-sortable="true">E-mail</th>
@@ -15,13 +14,11 @@
    			 <% @users.each do |user| %>
      	 		<tr data-link="<%= user_path(user) %>">
 					<td><%= user.id %></td>
-      			 		<td><%= user.l_name %></td>
-      			 		<td><%= user.f_name %></td>
-								<td><%= user.nationality %></td>
-								<td><%= user.national_id %></td>
-								<td><%= user.email %></td>
-								<td><%= user.role %></td>
-
+      			 	<td><%= user.full_name %></td>
+					<td><%= user.nationality %></td>
+					<td><%= user.national_id %></td>
+					<td><%= user.email %></td>
+					<td><%= user.role %></td>
       			</tr>
    	 		<% end %>
 		</tbody>

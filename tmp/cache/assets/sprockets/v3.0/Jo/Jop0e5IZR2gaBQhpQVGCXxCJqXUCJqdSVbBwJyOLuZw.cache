@@ -1,0 +1,22 @@
+I";(function() {
+  $(document).on("turbolinks:load", function() {
+    var home;
+    $('#studentAttendanceList').hide();
+    home = $('.selectHomwork').html();
+    return $('.selectGradeForAttend').change(function() {
+      var escaped_make, gradeValue, options, subj;
+      gradeValue = $('.selectGradeForAttend').val();
+      document.location.href = "/student_attendances/new#id=" + gradeValue;
+      subj = jQuery('.selectGradeForAttend').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      if (escaped_make) {
+        return $('#studentAttendanceList').show();
+      } else {
+        return $('#studentAttendanceList').hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET

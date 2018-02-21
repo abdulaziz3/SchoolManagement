@@ -46,4 +46,29 @@ class SessionsController < ApplicationController
   end
   redirect_to root_path
 end
+
+def parentnew
+end
+
+def parentcreate
+  parent = Parent.find_by(email: params[:session][:email].downcase)
+  if parent && parent.authenticate(params[:session][:password])
+    session[:parent_id] = parent.id
+    flash[:success] = "Welcom back"
+    redirect_to session[:return_to] || root_path
+  else
+    flash[:danger] = "Invalid email / password"
+    render 'new'
+  end
+end
+
+def parentdestroy
+  if parent_signed_in?
+    session[:parent_id] = nil
+  else
+    flash[:notice] = "You need to sign in"
+  end
+  redirect_to root_path
+end
+
 end

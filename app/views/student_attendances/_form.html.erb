@@ -1,0 +1,42 @@
+<%= render 'shared/errors', object: @student_attendance %>
+
+<!-- <%= button_to "Refresh", new_student_attendance_path, :method => :get, class: "get_attendance btn btn-sm col-sm-3 btn-success" %> -->
+
+<div class = "show_attendance">
+  <div class = "form-group">
+    <div class="control-label col-sm-2 col-sm-offset-1">
+      <%= label_tag :grade, "Grade" %>
+    </div>
+    <div class="col-sm-8">
+      <%= collection_select :post, :subject_id, Grade.all, :id, :grade_name, {:include_blank => "Select Grade"}, {class: 'form-control selectGradeForAttend'} %>
+    </div>
+  </div>
+  <br><br><br>
+  <div id = "studentAttendanceList">
+  <% if @showAttendance %>
+    <table class="table table-hover show_attendance">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= form_tag('saveAttendance', remote: true) do %>
+          <% @students.where(:grade_id => @gradeValue).each do |student| %>
+          <tr>
+            <th><%= label_tag student.id, student.full_name %> <!--<%= hidden_field_tag(student.full_name, value = student.id) %>--></th>
+            <th><%= select_tag student.id, options_for_select(@att_desc.collect{ |u| [u.att_status, u.id ]}), class: "btn-sm col col-sm-5" %></th>
+          </tr>
+          <% end %>
+          <div align = "right">
+            <%= date_select("date", "written_on", :id => 'datepicker', order: [:day, :month, :year]) %>
+          </div>
+      </tbody>
+    </table>
+    <%= submit_tag 'Submitting Attendance', class: "btn btn-primary btn-block btn-lg" %>
+  <% end %>
+<% end %>
+</div>
+</div>

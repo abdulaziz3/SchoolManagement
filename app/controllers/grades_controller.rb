@@ -1,13 +1,12 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
 
-  # GET /grades
-  # GET /grades.json
   def index
     @grades = Grade.all
   end
 
   def show
+    @grade = Grade.find(params[:id])
   end
 
   def new
@@ -20,16 +19,13 @@ class GradesController < ApplicationController
   def create
     @grade = Grade.new(grade_params)
 
-    respond_to do |format|
       if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
-        format.json { render :show, status: :created, location: @grade }
+        flash[:success] = "Grade has Created"
+        redirect_to grades_path
       else
-        format.html { render :new }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
+      render 'new'
       end
     end
-  end
 
   def update
     respond_to do |format|

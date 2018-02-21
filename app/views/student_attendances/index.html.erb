@@ -1,0 +1,43 @@
+<h1 align = "center">Attendances</h1>
+<div id = "search">
+  <%= render 'searchAttendance' %>
+</div>
+<div class="center">
+  <%= will_paginate %>
+</div>
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th data-field="#" data-sortable="true">ID</th>
+      <th data-field="#" data-sortable="true">|</th>
+      <th data-field="#" data-sortable="true">Student Name</th>
+      <th data-field="#" data-sortable="true">Attendance Status</th>
+      <th data-field="#" data-sortable="true">Date</th>
+      <th data-field="#" data-sortable="true">|</th>
+      <th data-field="#" data-sortable="true" class ="glyphicon-file">Show</th>
+      <th data-field="#" data-sortable="true" class ="glyphicon-pencil">Edit</ht>
+      <th data-field="#" data-sortable="true" class ="glyphicon-trash">Delete<th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @student_attendances.each do |student_attendance| %>
+      <tr data-link="<%= student_attendances_path(student_attendance) %>">
+        <td><%= student_attendance.id%></td>
+        <td>|</td>
+        <td><%= student_attendance.student.full_name %></td>
+        <td><%= student_attendance.attendance_description.att_status %></td>
+        <td><%= student_attendance.date %></td>
+        <td>|</td>
+        <td><%= link_to 'Show', student_attendance, class: "btn btn-primary btn-xs glyphicon glyphicon-file" %></td>
+        <td><%= link_to 'Edit', edit_student_attendance_path(student_attendance), class: "btn btn-primary btn-xs glyphicon glyphicon-pencil" %></td>
+        <td><%= link_to 'Destroy', student_attendance, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-primary glyphicon glyphicon-trash" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="center">
+  <%= will_paginate %>
+</div>
+
+<%= link_to 'New attendance', new_student_attendance_path %>

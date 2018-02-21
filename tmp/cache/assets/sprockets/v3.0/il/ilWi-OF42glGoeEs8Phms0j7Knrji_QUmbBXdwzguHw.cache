@@ -1,0 +1,37 @@
+I"Y(function() {
+  $(document).on("turbolinks:load", function() {
+    var home;
+    $('.selectHomwork').parent().hide();
+    $('.hm_label').parent().hide();
+    $('.selectStudent').parent().hide();
+    $('.label_student').parent().hide();
+    $('.selectMak').parent().hide();
+    $('.label_mark').parent().hide();
+    home = $('.selectHomwork').html();
+    return $('.selectSubject').change(function() {
+      var escaped_make, options, subj;
+      subj = jQuery('.selectSubject').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      if (options) {
+        $('.selectHomwork').html(options);
+        $('.selectHomwork').parent().show();
+        $('.hm_label').parent().show();
+        $('.selectStudent').parent().show();
+        $('.label_student').parent().show();
+        $('.selectMak').parent().show();
+        return $('.label_mark').parent().show();
+      } else {
+        $('.selectHomwork').empty();
+        $('.selectHomwork').parent().hide();
+        $('.hm_label').parent().hide();
+        $('.selectStudent').parent().hide();
+        $('.label_student').parent().hide();
+        $('.selectMak').parent().hide();
+        return $('.label_mark').parent().hide();
+      }
+    });
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,45 @@
+I"»(function() {
+  $(document).on("turbolinks:load", function() {
+    var home, url;
+    url = document.location.href;
+    url = url.substring(url.indexOf('=') + 1);
+    if (url.length === 1) {
+      document.getElementById('post_homework_id').value = url;
+    }
+    home = $('.selectHomwork').html();
+    $('.selectSubject').change(function() {
+      var escaped_make, options, subj;
+      subj = jQuery('.selectSubject').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      options = "<option value=''>Select Homework</option>" + options;
+      if (options) {
+        $('.selectHomwork').html(options);
+        $('.selectHomwork').parent().show();
+        $('.homeworklabel').parent().show();
+        $('.hm_label').parent().show();
+        $('.selectStudent').parent().show();
+        $('.stud_label').parent().show();
+        $('.selectMark').parent().show();
+        return $('.mark_label').parent().show();
+      } else {
+        $('.selectHomwork').empty();
+        $('.selectHomwork').parent().hide();
+        $('.homeworklabel').parent().hide();
+        $('.hm_label').parent().hide();
+        $('.selectStudent').parent().hide();
+        $('.stud_label').parent().hide();
+        $('.selectMark').parent().hide();
+        $('.mark_label').parent().hide();
+        return $('#studentMarksList').hide();
+      }
+    });
+    return $('.selectHomwork').change(function() {
+      var homeworkValue;
+      homeworkValue = $('.selectHomwork').val();
+      return document.location.href = "/marks/new?homeworkValue=" + homeworkValue;
+    });
+  });
+
+}).call(this);
+:ET

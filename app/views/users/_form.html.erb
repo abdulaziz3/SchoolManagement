@@ -6,7 +6,7 @@
 
         <div class= "form-group">
             <div class="control-label col-sm-2">
-                <%= f.label :f_name %>
+                <%= f.label :first_name %>
             </div>
             <div class="col-sm-8">
               <%= f.text_field :f_name, class: "form-control", placeholder: "First Name", autofocus: true %>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
           <div class="control-label col-sm-2">
-            <%= f.label :l_name %>
+            <%= f.label :last_name %>
           </div>
           <div class="col-sm-8">
             <%= f.text_field :l_name, class: "form-control", placeholder: "Last Name", autofocus: true%>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
           <div class="control-label col-sm-2">
-            <%= f.label :dob %>
+            <%= f.label :date_of_birth %>
           </div>
           <div class="col-sm-8">
             <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth", autofocus: true%>
@@ -41,7 +41,7 @@
             <%= f.label :gender %>
           </div>
           <div class="col-sm-8">
-            <%= f.text_field :gender, class: "form-control", placeholder: "Gender", autofocus: true%>
+            <%= f.select :gender, User::GENDER, {prompt: 'Select gender'},{class: 'form-control'}%>
           </div>
         </div>
         <div class="form-group">
@@ -49,7 +49,7 @@
             <%= f.label :nationality %>
           </div>
           <div class="col-sm-8">
-            <%= f.country_select :nationality, ["Ireland","Saudi Arabia", "GB", "US"], {}, { :class => "form-control" }  %>
+            <%= f.country_select :nationality, [ "SA" ], {prompt: 'Selct a country'}, { :class => "form-control" }  %>
           </div>
         </div>
         <div class="form-group">
@@ -70,7 +70,7 @@
         </div>
         <div class="form-group">
           <div class="control-label col-sm-2">
-            <%= f.label :password_confirmation %>
+            <%= f.label :password_confirm %>
           </div>
           <div class="col-sm-8">
             <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation", autofocus: true%>
@@ -78,26 +78,21 @@
         </div>
         <div class="form-group">
           <div class="control-label col-sm-2">
-            <%= f.label :role %>
+            <%= f.label :role_id %>
           </div>
-            <div class="form-group">
-            <div class="col-sm-8">
-            <select class="selectpicker form-control">
-              <option>Choose a Role</option>
-              <option>Admin</option>
-              <option>Manager</option>
-              <option>Teacher</option>
-              <option>psychologiest</option>
-            </select>
-            </div>
+            <div class="col-sm-8 ">
+              <%= f.collection_select :role_id, Role.all, :id, :role_name, {prompt: 'Select a role'},{class: 'form-control'} %>
             </div>
         </div>
+        <br />
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-2">
-            <%= f.submit(@user.new_record? ? "sign up" : "update account", class: 'btn btn-primary btn-lg')%>
+          <div class="col-sm-offset-2 col-sm-8">
+            <%= f.submit(@user.new_record? ? "sign up" : "update account", class: 'btn btn-primary btn-lg btn-block')%>
           </div>
-          <div class="col-sm-offset-4 col-sm-2">
-            <%= link_to 'back', @user, class: 'btn btn-primary btn-lg pull-right' %>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-8">
+            <%= link_to 'Home Page', root_path, class: "btn btn-primary btn-lg btn-block" %>
           </div>
         </div>
         <% end %>

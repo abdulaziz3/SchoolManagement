@@ -1,0 +1,11 @@
+I"=(function() {
+  $(document).on("turbolinks:load", function() {
+    return $('.selectGradeForAttend').change(function() {
+      var gradeValue;
+      gradeValue = $('.selectGradeForAttend').val();
+      return document.location.href = "/student_attendances/new?gradeValue=" + gradeValue;
+    });
+  });
+
+}).call(this);
+:ET

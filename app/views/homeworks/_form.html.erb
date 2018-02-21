@@ -1,0 +1,61 @@
+<%= render 'shared/errors', object: @homework %>
+
+<%= form_for(@homework, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+  <div class = "form-group">
+    <div class = "control-label col-sm-2">
+      <%= f.label :homework_name %>
+    </div>
+    <div class = "col-sm-8">
+      <%= f.text_field :homework_name, class: "form-control", placeholder: "homework Name", autofocus: true %>
+    </div>
+  </div>
+
+  <div class = "form-group">
+    <div class = "control-label col-sm-2">
+      <%= f.label :description %>
+    </div>
+    <div class = "col-sm-8">
+      <%= f.text_field :description, class: "form-control", placeholder: "homework description", autofocus: true %>
+    </div>
+  </div>
+
+  <div class = "form-group">
+    <div class = "control-label col-sm-2">
+      <%= f.label :marking %>
+    </div>
+    <div class = "col-sm-8">
+      <%= f.text_field :marking, class: "form-control", placeholder: "Marking", autofocus: true %>
+    </div>
+  </div>
+<!--
+  <div class = "form-group">
+    <div class = "control-label col-sm-2">
+      <%= f.label :user_id %>
+    </div>
+    <div class = "col-sm-8">
+      <%= f.collection_select :user_id, User.all, :id, :f_name, {selected: :current_user},{class: 'form-control'}%>
+    </div>
+  </div>
+-->
+  <div class = "form-group">
+    <div class = "control-label col-sm-2">
+      <%= f.label :subject_id %>
+    </div>
+    <div class = "col-sm-8">
+      <%= f.collection_select :subject_id, Subject.where(:user_id => @subject_user_id), :id, :subject_name, {include_blank: "Select Subject"},{class: 'form-control'}  %>
+    </div>
+  </div>
+  <div class = "form-group">
+    <%if user_signed_in? %>
+    <div class = "col-sm-offset-2 col-sm-2">
+      <%= f.submit class: 'btn btn-primary btn-lg' %>
+    </div>
+    <% end %>
+    <div class = "col-xs-4 col-xs-offset-2">
+      <%= link_to "Go Back", root_path, class: "btn btn-danger btn-lg pull-right" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>

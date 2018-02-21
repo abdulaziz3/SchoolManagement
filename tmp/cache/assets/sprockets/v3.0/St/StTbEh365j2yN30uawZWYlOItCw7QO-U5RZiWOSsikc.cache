@@ -1,0 +1,65 @@
+I"³(function() {
+  $(document).on("turbolinks:load", function() {
+    var escaped_make, home, homeWorkValue, options, subj, subjectValue, url;
+    url = document.location.href;
+    homeWorkValue = url.substring(url.indexOf("homeworkValue="), url.indexOf("&")).substring(14);
+    subjectValue = url.substring(url.indexOf("subjectValue=")).substring(13);
+    if (subjectValue.length === 1) {
+      $('.selectHomwork').empty();
+      document.getElementById('post_marks_subject_id').value = subjectValue;
+      home = $('.selectHomwork').html();
+      subj = jQuery('.selectSubject').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      options = "<option value=''>Select Homework</option>" + options;
+      $('.selectHomwork').parent().show();
+      $('.homeworklabel').parent().show();
+      $('.hm_label').parent().show();
+      $('.selectHomwork').html(options);
+    } else if (homeWorkValue.length === 1) {
+      document.getElementById('post_marks_subject_id').value = subjectValue;
+      document.getElementById('post_marks_homework_id').value = homeWorkValue;
+    } else {
+      $('.selectHomwork').parent().hide();
+      $('.homeworklabel').parent().hide();
+      $('.hm_label').parent().hide();
+    }
+    home = $('.selectHomwork').html();
+    $('.selectSubject').change(function() {
+      subjectValue = $('.selectSubject').val();
+      document.location.href = "/marks/new?subjectValue=" + subjectValue;
+      subj = jQuery('.selectSubject').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      if (options) {
+        options = "<option value=''>Select Homework</option>" + options;
+        $('.selectHomwork').html(options);
+        $('.selectHomwork').parent().show();
+        $('.homeworklabel').parent().show();
+        $('.hm_label').parent().show();
+        $('.selectStudent').parent().show();
+        $('.stud_label').parent().show();
+        $('.selectMark').parent().show();
+        return $('.mark_label').parent().show();
+      } else {
+        $('.selectHomwork').empty();
+        $('.selectHomwork').parent().hide();
+        $('.homeworklabel').parent().hide();
+        $('.hm_label').parent().hide();
+        $('.selectStudent').parent().hide();
+        $('.stud_label').parent().hide();
+        $('.selectMark').parent().hide();
+        $('.mark_label').parent().hide();
+        return $('#studentMarksList').hide();
+      }
+    });
+    return $('.selectHomwork').change(function() {
+      var homeworkValue;
+      homeworkValue = $('.selectHomwork').val();
+      subjectValue = $('.selectSubject').val();
+      return document.location.href = "/marks/new?homeworkValue=" + homeworkValue + "&subjectValue=" + subjectValue;
+    });
+  });
+
+}).call(this);
+:ET

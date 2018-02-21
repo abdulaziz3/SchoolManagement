@@ -1,10 +1,13 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  #before_action :require_admin, only: [:destroy]
+  before_action :authorised, only: [:show, :index]
+  before_filter :require_admin, only: [:destroy]
 
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.paginate(page: params[:page], per_page: 12)
   end
 
   # GET /subjects/1
@@ -26,14 +29,11 @@ class SubjectsController < ApplicationController
   def create
     @subject = Subject.new(subject_params)
 
-    respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
-        format.json { render :show, status: :created, location: @subject }
+        flash[:success] = "Subject was created"
+        redirect_to subject_path(@subject)
       else
-        format.html { render :new }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
-      end
+        render 'new'
     end
   end
 
@@ -69,6 +69,6 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:subject_name, :subject_code)
+      params.require(:subject).permit(:subject_name, :subject_code, :grade_id, :user_id)
     end
 end

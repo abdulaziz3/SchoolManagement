@@ -1,0 +1,52 @@
+<%= render 'shared/errors', object: @lesson %>
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_for(@lesson, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :lesson_name %>
+      </div>
+      <div class="col-sm-8">
+        <%= f.text_field :lesson_name, class: "form-control", placeholder: "Lesson Name", autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :lesson_note %>
+      </div>
+      <div class="col-sm-8 col">
+        <%= f.text_area :lesson_note, class: "form-control lessonNote", rows: '5', autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :subject_id %>
+      </div>
+      <div class="col-sm-8">
+        <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, {prompt: "select subject"}, {class: "form-control"} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <!-- <%= f.label :lesson_file %> -->
+      </div>
+      <div class="col-sm-8"><br>
+        <%= f.file_field :lesson_file, class: "form-control-file btn-md" %>
+      </div>
+    </div><br>
+    <div class="from-group">
+      <div class="col-xs-offset-2 col-xs-2">
+        <%= f.submit class: "btn btn-lg btn-primary" %>
+      </div>
+      <div class="col-xs-2 col-xs-offset-4">
+        <%= link_to 'Go back', root_path, class: 'btn btn-danger btn-lg pull-right' %>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+</div>

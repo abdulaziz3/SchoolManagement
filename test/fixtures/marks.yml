@@ -2,12 +2,12 @@
 
 one:
   mark: 1
+  user_id: 1
   student_id: 1
   subject_id: 1
-  grade_id: 1
 
 two:
   mark: 1
+  user_id: 1
   student_id: 1
   subject_id: 1
-  grade_id: 1

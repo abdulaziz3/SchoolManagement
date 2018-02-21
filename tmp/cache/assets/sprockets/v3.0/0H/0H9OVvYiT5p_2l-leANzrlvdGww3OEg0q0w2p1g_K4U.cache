@@ -1,0 +1,21 @@
+I"·(function() {
+  $(document).on("turbolinks:load", function() {
+    var home;
+    home = $('.selectHomwork').html();
+    return $('.selectGradeForAttend').change(function() {
+      var escaped_make, gradeValue, options, subj;
+      gradeValue = $('.selectGradeForAttend').val();
+      document.location.href = "/student_attendances/new?gradeValue=" + gradeValue;
+      subj = jQuery('.selectGradeForAttend').children('option').filter(':selected').text();
+      escaped_make = subj.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      options = $(home).filter("optgroup[label='" + escaped_make + "']").html();
+      if (escaped_make) {
+
+      } else {
+
+      }
+    });
+  });
+
+}).call(this);
+:ET

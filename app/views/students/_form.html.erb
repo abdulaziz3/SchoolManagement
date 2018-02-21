@@ -1,15 +1,15 @@
 <%= render 'shared/errors', object: @student %>
 
-<div class="row">
+  <div class="row">
     <div class="col-xs-12">
-        <%= form_for(@student, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-        <div class= "form-group">
-            <div class="control-label col-sm-2">
-                <%= f.label :f_name %>
-            </div>
-            <div class="col-sm-8">
-              <%= f.text_field :f_name, class: "form-control", placeholder: "First Name", autofocus: true %>
-            </div>
+      <%= form_for(@student, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <div class="form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label :f_name %>
+          </div>
+          <div class="col-sm-8">
+            <%= f.text_field :f_name, class: "form-control", placeholder: "First Name", autofocus: true %>
+          </div>
         </div>
         <div class="form-group">
           <div class="control-label col-sm-2">
@@ -40,7 +40,7 @@
             <%= f.label :gender %>
           </div>
           <div class="col-sm-8">
-            <%= f.text_field :gender, class: "form-control", placeholder: "Gender", autofocus: true%>
+           <%= f.select :gender, Student::GENDER, {prompt: 'Select gender'},{class: 'form-control'}%>
           </div>
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
             <%= f.label :nationality %>
           </div>
           <div class="col-sm-8">
-            <%= f.country_select :nationality, ["Ireland","Saudi Arabia", "GB", "US"], {}, { :class => "form-control" }  %>
+            <%= f.country_select :nationality, ["SA", "GB", "IE", "US"], { include_blank: true }, { :class => "form-control" } %>
           </div>
         </div>
         <div class="form-group">
@@ -101,20 +101,40 @@
         </div>
         <div class="form-group">
           <div class="control-label col-sm-2">
-            <%= f.label :password_confirmation %>
+            <%= f.label :password_confirm %>
           </div>
           <div class="col-sm-8">
             <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation", autofocus: true%>
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-2">
-            <%= f.submit(@student.new_record? ? "sign up" : "update account", class: 'btn btn-primary btn-lg')%>
+            <%= f.label :grade_id, class: 'col-sm-2 control-label' %>
+            <div class="col-sm-8">
+              <%= f.collection_select :grade_id, Grade.all, :id, :grade_name, {include_blank: true}, {class: 'grade-select form-control'} %>
+            </div>
           </div>
-          <div class="col-sm-offset-4 col-sm-2">
-            <%= link_to 'back', @student, class: 'btn btn-primary btn-lg pull-right' %>
+          <!--<div class="form-group">
+              <%= f.label :subject_id, class: 'col-sm-2 control-label label-select' %>
+              <div class="col-sm-8">
+                <%= f.grouped_collection_select :subject_ids, Grade.all, :subjects, :grade_name, :id, :subject_name, {:multiple => 'true'}, {:class => 'subject-select form-control'}%><br />
+              </div>
+          </div>-->
+          <div class="form-group">
+            <%= f.label :parent_id, class: 'col-sm-2 control-label' %>
+            <div class="col-sm-8">
+              <%= f.collection_select :parent_id, Parent.all, :id, :full_name, {include_blank: 'select a parent'}, {class: 'form-control'} %>
+            </div>
+          </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-8">
+            <%= f.submit(@student.new_record? ? "sign up" : "update account", class: 'btn btn-primary btn-lg btn-block')%>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-8">
+            <%= link_to 'Home Page', root_path, class: 'btn btn-primary btn-lg btn-block' %>
           </div>
         </div>
         <% end %>
     </div>
-</div>
+  </div>

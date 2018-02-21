@@ -1,8 +1,31 @@
 class Subject < ActiveRecord::Base
 
-	has_many :students
-	
-	has_one :teacher
+	belongs_to :grade
+	belongs_to :user
+	has_many :homeworks
+	has_many :marks, through: :homework
 
+	has_many :student_subjects
+	has_many :students, through: :student_subjects
 
+	validates :subject_name, presence: true
+	validates :subject_name, uniqueness: true
+	validates :subject_code, presence: true
+	validates :subject_code, uniqueness: true
+	validates_presence_of :grade, :if => :no_grads?
+	validates_presence_of :user, :if => :no_users?
+
+protected
+
+	def no_grads?
+		grade.nil?
+	end
+
+	def no_users?
+		user.nil?
+	end
+	#def subject_to_students(grad)
+		#"select subject_name from subject where grade_id = grade_id"
+		#where("grade_name = ?","%#{grad}%")
+	#end
 end
