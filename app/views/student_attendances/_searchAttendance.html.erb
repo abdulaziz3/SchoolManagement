@@ -1,7 +1,21 @@
-<div class="navbar-form navbar-left">
+
+<div class="navbar-form center">
 	<div class="form-group">
-          <%= form_tag(searchAttendance_path, method: :get) do %>
-          <%= text_field_tag(:attendQuery, params[:attendQuery], class: "form-control", placeholder: "Search") %>
-    </div>
-    	<% end %>
+
+  	<%= form_tag(searchAttendance_path, method: :get) do %>
+
+			<%= label_tag :name, "Name", class: "col" %>&nbsp;&nbsp;
+			<%= text_field_tag(:attendQuery, params[:attendQuery], class: "form-control", placeholder: "Search name") %>&nbsp;
+
+			<%= label_tag :grade, "Grade", class: "col" %>&nbsp;&nbsp;
+			<%= select_tag :attendGradeQuery, options_for_select(Grade.all.collect{ |u| [u.grade_name, u.id ]}, params[:attendGradeQuery]), {:prompt => "Select Grade", class: "btn-sm col form-control customselect"} %>&nbsp;
+
+			<%= label_tag :date, "Date", class: "col" %>&nbsp;&nbsp;
+			<%= date_field_tag(:attendDateQuery, params[:attendDateQuery], class: "form-control col-4 no-spinners")%>&nbsp;
+
+			<%= submit_tag "Search", data: { disable_with: "Please wait.." }, class: 'btn btn-md btn-md-2 btn-secondary custom' %>
+
+		<% end %>
+
+  </div>
 </div>

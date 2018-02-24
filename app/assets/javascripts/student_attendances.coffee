@@ -9,9 +9,12 @@ $(document).on "turbolinks:load", ->
     document.getElementById('post_subject_id').value = gradeValue
 
   $('.selectGradeForAttend').change ->
-    console.log("Test")
     gradeValue = $('.selectGradeForAttend').val();
     document.location.href = "/student_attendances/new?gradeValue="+gradeValue;
+
+  $('#dateFieldAttendance').change ->
+    $('#dateHidden').val($('#attendance_date').val())
+
 
 
 

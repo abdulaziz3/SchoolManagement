@@ -1,0 +1,21 @@
+I"î(function() {
+  $(document).on("turbolinks:load", function() {
+    var gradeValue, url;
+    url = document.location.href;
+    gradeValue = url.substring(url.indexOf("gradeValue=")).substring(11);
+    if (gradeValue.length > 0 && gradeValue.length < 4) {
+      document.getElementById('post_subject_id').value = gradeValue;
+    }
+    $('.selectGradeForAttend').change(function() {
+      var now;
+      gradeValue = $('.selectGradeForAttend').val();
+      now = new Date();
+      return document.location.href = "/student_attendances/new?gradeValue=" + gradeValue + "&attendance_date=" + now;
+    });
+    return $('#dateFieldAttendance').change(function() {
+      return $('#dateHidden').val($('#attendance_date').val());
+    });
+  });
+
+}).call(this);
+:ET

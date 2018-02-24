@@ -4,11 +4,16 @@
 
 <div class = "show_attendance">
   <div class = "form-group">
-    <div class="control-label col-sm-2 col-sm-offset-1">
+    <div class="control-label col-sm-2">
       <%= label_tag :grade, "Grade" %>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       <%= collection_select :post, :subject_id, Grade.all, :id, :grade_name, {:include_blank => "Select Grade"}, {class: 'form-control selectGradeForAttend'} %>
+    </div>
+    <div class="col-sm-4" id="dateFieldAttendance">
+      <!-- <%= form_tag(new_student_attendance_path, method: :get) do %> -->
+        <%= date_field_tag(:attendance_date, params[:attendance_date])%>
+      <!-- <% end %> -->
     </div>
   </div>
   <br><br><br>
@@ -23,15 +28,18 @@
       </thead>
 
       <tbody>
-        <%= form_tag('saveAttendance', remote: true) do %>
+        <%= form_tag('saveAttendance', remote: true, :id => "SaveAttendanceForm") do %>
           <% @students.where(:grade_id => @gradeValue).each do |student| %>
           <tr>
             <th><%= label_tag student.id, student.full_name %> <!--<%= hidden_field_tag(student.full_name, value = student.id) %>--></th>
             <th><%= select_tag student.id, options_for_select(@att_desc.collect{ |u| [u.att_status, u.id ]}), class: "btn-sm col col-sm-5" %></th>
+            <%= hidden_field_tag("dateHidden") %>
+            <!-- <th><%= label_tag :date_label, params[:date_label], class: "btn-sm col col-sm-5" %></th> -->
           </tr>
           <% end %>
           <div align = "right">
-            <%= date_select("date", "written_on", :id => 'datepicker', order: [:day, :month, :year]) %>
+
+            <!-- <%= date_select("date", "written_on", :id => 'datepicker', order: [:day, :month, :year]) %> -->
           </div>
       </tbody>
     </table>

@@ -16,7 +16,7 @@ class StudentAttendancesController < ApplicationController
   def new
     @gradeValue = params["gradeValue"]
     @student_attendance = StudentAttendance.new
-
+    params[:attendance_date] = Date.new
     @showAttendance = false
     if @gradeValue then
       @todaysAttendance = StudentAttendance.checkAttendance params[:gradeValue]
@@ -33,12 +33,12 @@ class StudentAttendancesController < ApplicationController
   end
 
   def searchAttendance
-    @student_attendances = StudentAttendance.paginate(page: params[:page], per_page: 25).searchAttendance params[:attendQuery]
+    @student_attendances = StudentAttendance.paginate(page: params[:page], per_page: 25).searchAttendance params
     unless @student_attendances.empty?
       render 'index'
     else
-      flash[:danger] = "NO Student were found"
-      @student_attendances = StudentAttendance.paginate(page: params[:page], per_page: 25)
+      flash[:danger] = "No Student were found for search criteria."
+      # @student_attendances = StudentAttendance.paginate(page: params[:page], per_page: 25)
       render 'index'
     end
   end
@@ -54,7 +54,8 @@ class StudentAttendancesController < ApplicationController
       attendance = StudentAttendance.new
       attendance.student_id = student.id
       attendance.attendance_description_id = params["#{studentid}"]
-      attendance.date = Date.civil(*params[:date].sort.map(&:last).map(&:to_i))
+      attendance.date = params[:dateHidden]
+      # Date.civil(*params[:date].sort.map(&:last).map(&:to_i))
       if attendance.attendance_description_id then
         attendance.save
       end
