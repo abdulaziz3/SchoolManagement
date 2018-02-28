@@ -3,7 +3,7 @@
     <div class="caption">
       <h3 class = "center"><%= @lesson.lesson_name %></h3>
       <h4>Note:&nbsp;<%= @lesson.lesson_note %></h4><br>
-      <h4>Subject:&nbsp;<%= link_to "#{@lesson.subject.subject_name}", subject_path(@lesson.subject)  %></h4><br>
+      <h4>Subject:&nbsp;<%= link_to "#{@lesson.subject.subject_name}", subject_path(@lesson.subject), class: "link_style"  %></h4><br>
       <h4>File :<%= link_to @lesson.file_name, @lesson.lesson_file_url, id: "link_file"%></h4><br>
     </div>
     <%= link_to 'Lessons', lessons_path, class: "btn btn-md btn-success glyphicon glyphicon-file" %>

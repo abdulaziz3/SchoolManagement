@@ -14,6 +14,12 @@ html, body {
 	background: none;
 	text-decoration: none;
 }
+.link_style, .link_style:hover, .link_style:active, .link_style:visited {
+	color: white;
+	border: none;
+	background-color: inherit;
+	text-decoration: none;
+}
 .custom {
 	min-width: 100px;
   max-width: 100px;
@@ -40,9 +46,8 @@ html, body {
 	text-align: justify;
 }
 textarea {
-    resize: none;
+  resize: none;
 }
-
 #logo {
 	float: left;
 	font-size: 1,7em;
@@ -61,17 +66,14 @@ textarea {
 	background-color: #686565;
 	text-decoration: none;
 }
-
 #logo li{
 	background-color: #686565;
 	text-decoration: none;
 }
-
 #logo a{
 	background-color: #686565;
 	text-decoration: none;
 }
-
 #colore{
 	font-color: white;
 }
@@ -148,9 +150,9 @@ textarea {
 	 color: white;
  }
  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    color: white;
-    background-color: #401d59 ;
-    border: none;
+  color: white;
+  background-color: #401d59 ;
+  border: none;
 }
 .btn-danger, .btn-danger:hover, .btn-danger-:active, .btn-danger:visited {
 	color: white;
@@ -161,23 +163,22 @@ textarea {
 	color: white;
 	background-color: #443737;
 	border: none;
-
 }
 .btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
 	color: white;
 	background-color: #2d2d2d;
 	border: none;
 }
- .badge {
-	  background-color: #001c63;
-	  text-transform: uppercas;
-	  letter-spacing: -1px;
-	  font-weight: bold;
-	  color: white;
+.badge {
+  background-color: #001c63;
+  text-transform: uppercas;
+  letter-spacing: -1px;
+  font-weight: bold;
+  color: white;
  }
- .badge :hover {
-	  background-color: #e8e2ce;
-	  color: white;
+.badge :hover {
+	 background-color: #e8e2ce;
+	 color: white;
  }
  .input_checkbox input {
 	 width: auto !important;
@@ -246,7 +247,6 @@ footer ul li {
   height: 100%;
   color: #e1ffff;
 }
-
 .nav-side-menu .brand {
   background-color: #23282e;
   line-height: 50px;
@@ -257,26 +257,12 @@ footer ul li {
 .nav-side-menu .toggle-btn {
   display: none;
 }
-.nav-side-menu ul,
-.nav-side-menu li {
+.nav-side-menu ul, .nav-side-menu li {
   list-style: none;
   padding: 0px;
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
-  /*
-    .collapsed{
-       .arrow:before{
-                 font-family: FontAwesome;
-                 content: "\f053";
-                 display: inline-block;
-                 padding-left:10px;
-                 padding-right: 10px;
-                 vertical-align: middle;
-                 float:right;
-            }
-     }
-*/
 }
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {

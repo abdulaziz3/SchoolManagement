@@ -1,7 +1,0 @@
-I"ƒ(function() {
-  $(document).on("turbolinks:load", function() {
-    return $(document).ready(saveAttendance);
-  });
-
-}).call(this);
-:ET

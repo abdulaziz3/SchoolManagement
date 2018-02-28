@@ -1,6 +1,44 @@
-<h1>Editing Student Attendance</h1>
+<%= render 'shared/errors', object: @student_attendance %>
 
-<%= render 'form' %>
+<h1 align = "center">Editing Attendance</h1>
 
-<%= link_to 'Show', @student_attendance %> |
-<%= link_to 'Back', student_attendances_path %>
+<div class='row'>
+  <div class='col-xs-12'>
+    <%=form_for(@student_attendance, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :student %>
+      </div>
+      <div class="col-sm-8">
+        <%= f.collection_select :student_id, Student.all, :id, :full_name, {prompt: 'student_name'}, {class: "form-control"} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :attendance %>
+      </div>
+      <div class="col-sm-8">
+        <%= f.collection_select :attendance_description_id, AttendanceDescription.all, :id, :att_status, {prompt: 'Select status'},{class: 'form-control'} %>
+      </div>
+    </div>
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :date %>
+        </div>
+          <div class="col-sm-8">
+            <%= f.text_field :date, class: "form-control", placeholder: "Date of attendance", autofocus: true%>
+          </div>
+      </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-2">
+           <%= f.submit class: 'btn btn-primary btn-lg '%>
+  	  </div>
+      <div class="col-xs-4 col-xs-offset-2">
+        <%= link_to 'Go Back ', root_path, class: "btn btn-danger btn-lg pull-right"%>
+      </div>
+   </div>
+   <%end%>
+  </div>
+</div>

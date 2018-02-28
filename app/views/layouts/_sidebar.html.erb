@@ -1,4 +1,4 @@
-<% if student_signed_in? %>
+<% if student_signed_in? && @current_student %>
 
 <div class="nav-side-menu">
     <div class="brand"><%= @current_student.full_name %></div>
@@ -15,10 +15,10 @@
           <a><i class="fa fa-globe fa-lg">User Information</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="informations">
-          <li><%= @student.nationality%></li>
-          <li><%= @student.email%></li>
-          <li><%= @student.grade.grade_name%></li>
-          <i><li><%= link_to "Edit Profile", edit_student_path(@student) %></li></i>
+          <li><%= @current_student.nationality%></li>
+          <li><%= @current_student.email%></li>
+          <li><%= @current_student.grade.grade_name%></li>
+          <i><li><%= link_to "Edit Profile", edit_student_path(@current_student) %></li></i>
         </ul>
         <!-- &amp; -->
 
@@ -26,7 +26,7 @@
           <a><i class="fa fa-gift fa-lg">Subjects</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="subjects">
-          <% @student.subjects.each do |subject| %>
+          <% @current_student.subjects.each do |subject| %>
             <li><%= link_to "#{subject.subject_name}", subject_path(subject)%> :  <%=link_to "#{subject.user.full_name}", user_path(subject.user) %> </li>
           <% end %>
         </ul>
@@ -36,7 +36,7 @@
           <a><i class="fa fa-globe fa-lg">Homeworks</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="homeworks">
-          <% @student.homeworks.each do |homework| %>
+          <% @current_student.homeworks.each do |homework| %>
             <li><%= link_to "#{homework.homework_name}", homework_path(homework) %> : <%=link_to "#{homework.subject.subject_name}", subject_path(homework.subject)%></li>
           <% end %>
         </ul>
@@ -64,7 +64,7 @@
 
 <% end %>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @current_user %>
 
 <div class="nav-side-menu">
     <div class="brand"><%= @current_user.full_name %></div>
@@ -82,16 +82,16 @@
           <a><i class="fa fa-globe fa-lg">User Information</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="informations">
-          <li><%= @user.nationality%></li>
-          <li><%= @user.email%></li>
-          <i><li><%= link_to "Edit Profile", edit_user_path(@user) %></li></i>
+          <li><%= @current_user.nationality%></li>
+          <li><%= @current_user.email%></li>
+          <i><li><%= link_to "Edit Profile", edit_user_path(@current_user) %></li></i>
         </ul>
 
         <li data-toggle="collapse" data-target="#subjects" class="collapsed">
           <a><i class="fa fa-gift fa-lg">Subjects</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="subjects">
-          <% @user.subjects.each do |subject| %>
+          <% @current_user.subjects.each do |subject| %>
             <li><%= link_to "#{subject.subject_name}", subject_path(subject) %></li>
           <% end %>
         </ul>
@@ -100,7 +100,7 @@
           <a><i class="fa fa-globe fa-lg">Homeworks</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="homeworks">
-          <% @user.homeworks.each do |homework| %>
+          <% @current_user.homeworks.each do |homework| %>
             <li><%= link_to "#{homework.homework_name}", homework_path(homework) %></li>
           <% end %>
         </ul>

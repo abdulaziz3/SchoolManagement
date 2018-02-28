@@ -1,5 +1,0 @@
-I"H(function() {
-  $(document).on('turbolinks:load');
-
-}).call(this);
-:ET

@@ -2,12 +2,12 @@
 
 <p>
   <strong>Student:</strong>
-  <%= @student_attendance.student_id %>
+  <%= @student_attendance.student.full_name %>
 </p>
 
 <p>
-  <strong>Attendance description:</strong>
-  <%= @student_attendance.attendance_description_id %>
+  <strong>Status:</strong>
+  <%= @student_attendance.attendance_description.att_status %>
 </p>
 
 <p>

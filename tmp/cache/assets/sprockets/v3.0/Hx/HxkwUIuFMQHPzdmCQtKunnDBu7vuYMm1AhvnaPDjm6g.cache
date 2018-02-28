@@ -1,5 +1,0 @@
-I"X(function() {
-  $(document).on('turbolinks:load', saveAttendance);
-
-}).call(this);
-:ET

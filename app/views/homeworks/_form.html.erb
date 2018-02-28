@@ -43,7 +43,7 @@
       <%= f.label :subject_id %>
     </div>
     <div class = "col-sm-8">
-      <%= f.collection_select :subject_id, Subject.where(:user_id => @subject_user_id), :id, :subject_name, {include_blank: "Select Subject"},{class: 'form-control'}  %>
+        <%= f.collection_select :subject_id, Subject.where(:user_id => @subject_user_id), :id, :subject_name, {include_blank: "Select Subject"},{class: 'form-control'}  %>
     </div>
   </div>
   <div class = "form-group">

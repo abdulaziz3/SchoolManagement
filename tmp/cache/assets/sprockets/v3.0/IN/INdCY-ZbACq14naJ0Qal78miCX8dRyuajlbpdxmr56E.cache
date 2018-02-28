@@ -1,5 +1,0 @@
-I"H(function() {
-  $(document).ready(saveAttendance);
-
-}).call(this);
-:ET

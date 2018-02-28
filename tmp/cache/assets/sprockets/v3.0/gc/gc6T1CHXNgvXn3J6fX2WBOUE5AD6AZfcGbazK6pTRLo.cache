@@ -1,7 +1,0 @@
-I"b(function() {
-  $('#datepicker').datepicker({
-    format: 'yyyy-mm-dd'
-  });
-
-}).call(this);
-:ET

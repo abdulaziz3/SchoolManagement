@@ -9,7 +9,7 @@
       <%= collection_select :post, :subject_id, Grade.all, :id, :grade_name, {:include_blank => "Select Grade"}, {class: 'form-control selectGradeForAttend'} %>
     </div>
     <div class="col-sm-4" id="dateFieldAttendance">
-        <%= date_field_tag(:attendance_date, params[:attendance_date], class: "form-control col-sm-4 no-spinners")%>
+        <%= date_field_tag(:attendance_date, params[:attendance_date], value: Date.today, disabled: true, class: "form-control col-sm-4 no-spinners datepicker")%>
     </div>
   </div>
   <br><br><br>
@@ -28,8 +28,8 @@
           <% @students.where(:grade_id => @gradeValue).each do |student| %>
           <tr>
             <th><%= label_tag student.id, student.full_name %> <!--<%= hidden_field_tag(student.full_name, value = student.id) %>--></th>
-            <th><%= select_tag student.id, options_for_select(@att_desc.collect{ |u| [u.att_status, u.id ]}), class: "btn-sm col col-sm-5" %></th>
-            <%= hidden_field_tag("dateHidden") %>
+            <th><%= select_tag student.id, options_for_select(@att_desc.collect{ |u| [u.att_status, u.id]}), class: "btn-sm col col-sm-5" %></th>
+            <%= hidden_field_tag("dateHidden", value: Date.today) %>
           </tr>
           <% end %>
       </tbody>

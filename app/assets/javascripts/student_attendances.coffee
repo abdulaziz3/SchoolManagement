@@ -15,8 +15,13 @@ $(document).on "turbolinks:load", ->
   $('#dateFieldAttendance').change ->
     $('#dateHidden').val($('#attendance_date').val())
 
+# var d = new Date(date);
+# d.setDate(d.getDate());
+# return new Date(d);
 
-
+# $('#txtDate').datepicker('setDate', 'today');
+# $('#dateHidden').val($('#attendance_date').datepicker('setDate', new Date()))
+# $('#dateHidden').val($('#attendance_date').val())
 
 # $(document).on "turbolinks:load", ->
 #   url = document.location.href
