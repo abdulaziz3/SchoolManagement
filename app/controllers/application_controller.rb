@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include ApplicationHelper
+  helper_method :mailbox, :conversation
+
 
   def student_authorise
     unless student_signed_in?
@@ -36,7 +38,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-private
+  private
+
+  def mailbox
+    @mailbox ||= @current_user.mailbox
+  end
+
+  def conversation
+    @conversation ||= mailbox.conversations.find(params[:id])
+  end
 
   def store_location
     session[:return_to] = request.fullpath

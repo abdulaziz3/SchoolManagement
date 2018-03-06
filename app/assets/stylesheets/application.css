@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require bootstrap-multiselect
+ *= require bootstrap-datepicker
+ *= require chosen
  *= require_self
  *= require_tree .
  */

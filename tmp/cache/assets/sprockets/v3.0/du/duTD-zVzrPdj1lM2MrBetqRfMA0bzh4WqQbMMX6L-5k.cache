@@ -1,0 +1,7 @@
+I"|(function() {
+  $(document).on("turbolinks:load", function() {
+    return $('.chosen-select').chosen;
+  });
+
+}).call(this);
+:ET

@@ -1,5 +1,7 @@
 class Student < ActiveRecord::Base
 
+	acts_as_messageable
+
 	has_secure_password
 	GENDER = ["Male", "Female"]
 

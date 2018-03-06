@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :messages
+  # resources :messages
   resources :lessons
   resources :courses
   resources :student_attendances
@@ -56,8 +56,18 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
+  get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
+  get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
+  # conversations
+      resources :conversations do
+        member do
+          post :reply
+          post :trash
+          post :untrash
+        end
+      end
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):

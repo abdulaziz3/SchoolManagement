@@ -11,9 +11,10 @@
 			<%= select_tag :attendGradeQuery, options_for_select(Grade.all.collect{ |u| [u.grade_name, u.id ]}, params[:attendGradeQuery]), {:prompt => "Select Grade", class: "btn-sm col form-control customselect"} %>&nbsp;
 
 			<%= label_tag :date, "Date", class: "col" %>&nbsp;&nbsp;
-			<%= date_field_tag(:attendDateQuery, params[:attendDateQuery], class: "form-control col-4 no-spinners")%>&nbsp;
+			<%= date_field_tag(:attendDateQuery, params[:attendDateQuery], start_year: Date.today.year - 20,
+			end_year: Date.today.year + 20, class: "form-control col-4 no-spinners")%>&nbsp;
 
-			<%= submit_tag "Search", data: { disable_with: "Please wait.." }, class: 'btn btn-md btn-md-2 btn-secondary custom' %>
+			<%= submit_tag "Search", data: { disable_with: "Please wait..." }, class: 'btn btn-md btn-md-2 btn-secondary custom' %>
 
 		<% end %>
 

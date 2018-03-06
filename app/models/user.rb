@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+	acts_as_messageable
+
 	has_secure_password
 	GENDER = ["Male", "Female"]
 
@@ -26,6 +28,14 @@ class User < ActiveRecord::Base
 
 	def full_name
 		"#{f_name} #{l_name}"
+	end
+
+	def mailboxer_name
+    full_name
+  end
+
+	def mailboxer_email(object)
+		self.email
 	end
 
 	def self.search(query)

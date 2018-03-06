@@ -22,7 +22,7 @@ class StudentAttendancesController < ApplicationController
       @todaysAttendance = StudentAttendance.checkAttendance params[:gradeValue]
       #p "Test Count: " + @todaysAttendance.count.to_s
       if(@todaysAttendance.count > 0)
-        flash[:danger] = "Attendance already taken"
+        flash.now[:danger] = "Attendance already taken"
         @showAttendance = false
       else
         @showAttendance = true
@@ -37,10 +37,11 @@ class StudentAttendancesController < ApplicationController
     unless @student_attendances.empty?
       render 'index'
     else
-      flash[:danger] = "No Student were found for search criteria."
+      flash.now[:danger] = "No Student were found for search criteria."
       # @student_attendances = StudentAttendance.paginate(page: params[:page], per_page: 25)
       render 'index'
     end
+    flash.clear
   end
 
   # GET /student_attendances/1/edit

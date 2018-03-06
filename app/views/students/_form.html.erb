@@ -32,7 +32,8 @@
             <%= f.label :dob %>
           </div>
           <div class="col-sm-8">
-            <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth", autofocus: true%>
+            <!-- <%= f.text_field :dob, class: "form-control", placeholder: "Date of Birth", autofocus: true%> -->
+            <%= f.text_field :dob, hide_label: true, class: 'datepicker form-control', placeholder: "Date of Birth", autofocus: true %>
           </div>
         </div>
         <div class="form-group">
