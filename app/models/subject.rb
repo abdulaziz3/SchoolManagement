@@ -24,9 +24,5 @@ protected
 	def no_users?
 		user.nil?
 	end
-	
-	#def subject_to_students(grad)
-		#"select subject_name from subject where grade_id = grade_id"
-		#where("grade_name = ?","%#{grad}%")
-	#end
+
 end

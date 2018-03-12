@@ -1,0 +1,9 @@
+I"¡(function() {
+  $(document).on("turbolinks:load", function() {
+    return $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy'
+    });
+  });
+
+}).call(this);
+:ET

@@ -12,11 +12,10 @@
 
 			<%= label_tag :date, "Date", class: "col" %>&nbsp;&nbsp;
 			<%= date_field_tag(:attendDateQuery, params[:attendDateQuery], start_year: Date.today.year - 20,
-			end_year: Date.today.year + 20, class: "form-control col-4 no-spinners")%>&nbsp;
+											end_year: Date.today.year + 20, class: "form-control col-4 no-spinners")%>&nbsp;
 
 			<%= submit_tag "Search", data: { disable_with: "Please wait..." }, class: 'btn btn-md btn-md-2 btn-secondary custom' %>
 
 		<% end %>
-
   </div>
 </div>

@@ -9,7 +9,7 @@
       <%= collection_select :post, :subject_id, Grade.all, :id, :grade_name, {:include_blank => "Select Grade"}, {class: 'form-control selectGradeForAttend'} %>
     </div>
     <div class="col-sm-4" id="dateFieldAttendance">
-        <%= date_field_tag(:attendance_date, params[:attendance_date], value: Date.today, disabled: true, class: "form-control col-sm-4 no-spinners datepicker")%>
+        <%= date_field_tag(:attendance_date, params[:attendance_date], value: Date.today, disabled: true, class: "form-control col-sm-4 no-spinners")%>
     </div>
   </div>
   <br><br><br>

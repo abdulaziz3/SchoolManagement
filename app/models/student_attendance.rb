@@ -12,7 +12,7 @@ class StudentAttendance < ActiveRecord::Base
       whereClause = "(f_name LIKE '%" + textQuery + "%' OR l_name LIKE '%" + textQuery + "%')"
     end
 
-    if(dateQuery && dateQuery.to_s.length > 0) 
+    if(dateQuery && dateQuery.to_s.length > 0)
       if(whereClause)
         whereClause = whereClause + "AND (date = '" + dateQuery.to_s + "')"
       else

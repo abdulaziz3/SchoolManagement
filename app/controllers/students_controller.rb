@@ -1,8 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :student_authorise, only: [:update, :edit, :show]
-  before_action :require_admin, only: [:destroy, :index]
-  before_action :authorised, only: [:show]
+  before_action :require_admin, only: [:destroy, :index, :update]
+  before_action :authorised, only: [:show, :edit]
 
   def index
     @students = Student.paginate(page: params[:page], per_page: 25)

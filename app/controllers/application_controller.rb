@@ -51,7 +51,6 @@ class ApplicationController < ActionController::Base
   def store_location
     session[:return_to] = request.fullpath
   end
-end
 
   def require_admin
     if !user_signed_in? || (user_signed_in? and !@current_user.role == "admin")
@@ -60,3 +59,4 @@ end
       redirect_to session[:return_to] || root_path
     end
   end
+end

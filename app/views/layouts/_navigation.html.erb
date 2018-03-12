@@ -29,11 +29,12 @@
             <li><%= link_to "New Mark", new_mark_path %></li>
             <li><%= link_to "Take Attendance", new_student_attendance_path, :method => :get %></li>
             <li><%= link_to "New Role", new_role_path %></li>
-            <li><%= link_to "New lesson", new_lesson_path %></li>
+            <li><%= link_to "New Lesson", new_lesson_path %></li>
+            <li><%= link_to "New Course", new_course_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Students List", students_path %></li>
+            <li><%= link_to "Register students", new_student_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Users List", users_path %></li>
+            <li><%= link_to "Register Users", new_user_path %></li>
           </ul>
         </li>
 
@@ -47,10 +48,12 @@
             <li><%= link_to " Marks", marks_path %></li>
             <li><%= link_to " Attendances", student_attendances_path, :method => :get %></li>
             <li><%= link_to " Roles", roles_path %></li>
-            <li><%= link_to " lessons", lessons_path %></li>
+            <li><%= link_to " Lessons", lessons_path %></li>
+            <li><%= link_to "Courses", courses_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Students List", courses_path %></li>
+            <li><%= link_to "Students List", students_path %></li>
             <li role="separator" class="divider"></li>
+            <li><%= link_to "Users List", users_path %></li>
             <li><%= link_to "Parents List", parents_path %></li>
           </ul>
         </li>
@@ -91,11 +94,12 @@
         <li><%= link_to " Logout", student_logout_path, method: :delete, id: "logo" %></li>
 
         <li class="dropdown", id: "logo">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false", id = "logo"><%= @current_student.l_name %><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false", id = "logo"><%= @current_user.l_name %><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Edit Profile", edit_student_path(@current_student) %></li>
-            <li><%= link_to "View Profile", student_path(@current_student) %></li>
+            <li><%= link_to "Edit Profile", edit_student_path(@current_user) %></li>
+            <li><%= link_to "View Profile", student_path(@current_user) %></li>
             <li role="separator" class="divider"></li>
+            <li><%= link_to "Inbox", mailbox_inbox_path %></li>
             <li><%= mail_to "", "email us" %></li>
           </ul>
         </li>
@@ -109,8 +113,8 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Edit Profile", edit_user_path(@current_user) %></li>
             <li><%= link_to "View Profile", user_path(@current_user) %></li>
-            <li><%= link_to "Inbox", mailbox_inbox_path %></li>
             <li role="separator" class="divider"></li>
+            <li><%= link_to "Inbox", mailbox_inbox_path %></li>
             <li><%= mail_to "", "email us" %></li>
           </ul>
         </li>

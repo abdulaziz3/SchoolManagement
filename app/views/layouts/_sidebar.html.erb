@@ -1,13 +1,17 @@
-<% if student_signed_in? && @current_student %>
+<% if student_signed_in? && @current_user %>
 
 <div class="nav-side-menu">
-    <div class="brand"><%= @current_student.full_name %></div>
+    <div class="brand"><%= @current_user.full_name %></div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
         <li align = "center">
           <a href="#">
-            <i class="fa fa-dashboard fa-lg">Dashboard</i>
+            <% Course.all.each do |course| %>
+              <% if course.current_course == true %>
+                <i class="fa fa-dashboard fa-lg">Course:&nbsp;<%= course.course_name %></i>
+              <% end %>
+            <% end %>
           </a>
         </li>
 
@@ -15,10 +19,10 @@
           <a><i class="fa fa-globe fa-lg">User Information</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="informations">
-          <li><%= @current_student.nationality%></li>
-          <li><%= @current_student.email%></li>
-          <li><%= @current_student.grade.grade_name%></li>
-          <i><li><%= link_to "Edit Profile", edit_student_path(@current_student) %></li></i>
+          <li><%= @current_user.nationality%></li>
+          <li><%= @current_user.email%></li>
+          <li><%= @current_user.grade.grade_name%></li>
+          <i><li><%= link_to "Edit Profile", edit_student_path(@current_user) %></li></i>
         </ul>
         <!-- &amp; -->
 
@@ -26,7 +30,7 @@
           <a><i class="fa fa-gift fa-lg">Subjects</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="subjects">
-          <% @current_student.subjects.each do |subject| %>
+          <% @current_user.subjects.each do |subject| %>
             <li><%= link_to "#{subject.subject_name}", subject_path(subject)%> :  <%=link_to "#{subject.user.full_name}", user_path(subject.user) %> </li>
           <% end %>
         </ul>
@@ -36,7 +40,7 @@
           <a><i class="fa fa-globe fa-lg">Homeworks</i><span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="homeworks">
-          <% @current_student.homeworks.each do |homework| %>
+          <% @current_user.homeworks.each do |homework| %>
             <li><%= link_to "#{homework.homework_name}", homework_path(homework) %> : <%=link_to "#{homework.subject.subject_name}", subject_path(homework.subject)%></li>
           <% end %>
         </ul>
@@ -74,7 +78,11 @@
       <ul id="menu-content" class="menu-content collapse out">
         <li align = "center">
           <a href="#">
-            <i class="fa fa-dashboard fa-lg">Dashboard</i>
+            <% Course.all.each do |course| %>
+              <% if course.current_course == true %>
+                <i class="fa fa-dashboard fa-lg">Course:&nbsp;<%= course.course_name %></i>
+              <% end %>
+            <% end %>
           </a>
         </li>
 

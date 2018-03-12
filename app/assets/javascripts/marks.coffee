@@ -1,6 +1,4 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
 $(document).on "turbolinks:load",  ->
   url = document.location.href
   homeWorkValue =  url.substring(url.indexOf("homeworkValue="),url.indexOf("&")).substring(14)
@@ -32,11 +30,7 @@ $(document).on "turbolinks:load",  ->
   if(homeWorkValue.length > 0 && homeWorkValue.length < 4)
     document.getElementById('post_marks_homework_id').value = homeWorkValue
 
-  # $('.selectStudent').parent().hide()
-  # $('.stud_label').parent().hide()
-  # $('.selectMark').parent().hide()
-  # $('.mark_label').parent().hide()
-  # $('#studentMarksList').hide()
+
   home = $('.selectHomwork').html()
   $('.selectSubject').change ->
     subjectValue = $('.selectSubject').val();

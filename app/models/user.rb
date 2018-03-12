@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 	GENDER = ["Male", "Female"]
-
+	belongs_to :course
 	VALID_EMAIL_VAL = /\A[\w+\-.]+@[A-z\d\-.]+\.[a-z]+\z/i
 	before_save {self.email = email.downcase}
 	validate :unique_student_email

@@ -1,6 +1,6 @@
 class MailboxController < ApplicationController
 
-  before_action :user_authorise
+  before_action :authorised
 
   def inbox
     @inbox = mailbox.inbox

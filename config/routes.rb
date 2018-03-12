@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'charts/chart_attendance'
+
+  get 'charts/chart_student_grades'
+
+  get 'charts/chart_user_roles'
+
+  get 'charts/chart_student_marke_grades'
+
   # resources :messages
   resources :lessons
   resources :courses
