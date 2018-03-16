@@ -29,15 +29,15 @@ module ApplicationHelper
       @active == active_page ? "active" : ""
     end
 
-    def weekday?
-      (1..5).include?(wday)
-    end
+    # def weekday?
+    #   (1..5).include?(wday)
+    # end
 
-    def week_days
-      monday to friday
-    end
+    # def week_days
+    #   monday to friday
+    # end
 
-    def time_of_day
-      nine to four
-    end
+    # def time_of_day
+    #   nine to four
+    # end
 end

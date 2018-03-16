@@ -106,6 +106,7 @@ class StudentAttendancesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_student_attendance
       @student_attendance = StudentAttendance.find(params[:id])

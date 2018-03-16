@@ -1,7 +1,7 @@
 class StudentAttendance < ActiveRecord::Base
   belongs_to :student
   belongs_to :attendance_description
-
+  
   def self.searchAttendance(params)
     textQuery = params[:attendQuery]
     gradeQuery = params[:attendGradeQuery]

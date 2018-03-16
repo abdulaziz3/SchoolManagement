@@ -11,7 +11,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-multiselect-rails'
-#gem 'bootstrap-datepicker-rails'
+#charts
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
 #contry-select + add city select + jquery
 gem 'country_select'
 # Use Uglifier as compressor for JavaScript assets

@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'charts/chart_attendance'
-
-  get 'charts/chart_student_grades'
-
-  get 'charts/chart_user_roles'
-
-  get 'charts/chart_student_marke_grades'
 
   # resources :messages
   resources :lessons
@@ -43,27 +36,31 @@ Rails.application.routes.draw do
     delete 'parent_logout' => :parentdestroy
 	end
 
+  ####### CHARTS
+  namespace :charts do
+    get 'chart-attendance'
+    get 'chart_student_grades'
+    get 'chart_user_roles'
+    get 'chart_student_marke_grades'
+  end
+
   get 'search' => 'users#search'
   get 'searchAttendance' => 'student_attendances#searchAttendance'
-  # get 'searchAttenanceDate' => 'student_attendances#searchAttendanceDate'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-  get 'pages/home'
-  get 'pages/about'
-  get 'pages/faqs'
+  namespace :pages do
+    get 'home'
+    get 'about'
+    get 'faqs'
+  end
 
-  #post 'attendances/saveAttendance'
-  #get 'student_attendances/new/:gradeValue'
+## marks and attendance
   post 'student_attendances/saveAttendance'
   post 'marks/saveMarks'
 
-
-  # You can have the root of your site routed with "root"
+##Home root
   root :to => "pages#home"
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+##Mailboxer routes
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
@@ -76,48 +73,5 @@ Rails.application.routes.draw do
           post :untrash
         end
       end
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

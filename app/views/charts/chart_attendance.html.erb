@@ -1,2 +1,5 @@
-<h1>Charts#chart_attendance</h1>
-<p>Find me in app/views/charts/chart_attendance.html.erb</p>
+<h1 align = "center">Attendance chart</h1><br>
+
+<%= line_chart StudentAttendance.group(:attendance_description_id).group_by_day(:created_at).count %>
+
+<!-- <%= line_chart charts_chart_attendance_path %> -->
