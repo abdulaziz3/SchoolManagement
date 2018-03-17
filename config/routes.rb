@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
 
+  resources :student_parents
   # resources :messages
   resources :lessons
   resources :courses
   resources :student_attendances
   resources :attendance_descriptions
   resources :student_homeworks
-  resources :parents
   resources :homeworks
   resources :marks
   resources :roles

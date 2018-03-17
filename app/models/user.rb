@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
 	has_many :homeworks
 	has_many :marks
 
+	has_many :student_parents
+	has_many :students, through: :student_parents
+
 	validates :email, presence: true , length: {maximum: 105},
 							uniqueness: {case_sensitvity: false}, format: { with: VALID_EMAIL_VAL }
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228153060) do
+ActiveRecord::Schema.define(version: 20180316190639) do
 
   create_table "attendance_descriptions", force: :cascade do |t|
     t.string   "att_status", limit: 255
@@ -120,19 +120,6 @@ ActiveRecord::Schema.define(version: 20180228153060) do
     t.string   "comment",     limit: 255
   end
 
-  create_table "parents", force: :cascade do |t|
-    t.string   "f_name",          limit: 255
-    t.string   "l_name",          limit: 255
-    t.string   "phone",           limit: 255
-    t.date     "dob"
-    t.string   "job",             limit: 255
-    t.string   "work_phone",      limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "password_digest", limit: 255
-    t.string   "email",           limit: 255
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "role_name",        limit: 255
     t.string   "role_description", limit: 255
@@ -153,6 +140,13 @@ ActiveRecord::Schema.define(version: 20180228153060) do
     t.integer  "homework_id", limit: 4
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "student_parents", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "student_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "student_subjects", force: :cascade do |t|
@@ -178,7 +172,6 @@ ActiveRecord::Schema.define(version: 20180228153060) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "grade_id",        limit: 4
-    t.integer  "parent_id",       limit: 4
   end
 
   create_table "subjects", force: :cascade do |t|

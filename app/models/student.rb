@@ -17,6 +17,9 @@ class Student < ActiveRecord::Base
 	has_many :attendances
 	has_many :marks
 
+	has_one :student_parent
+	has_one :user, through: :student_parent
+
 	has_many :student_subjects
 	has_many :subjects, through: :student_subjects
 
