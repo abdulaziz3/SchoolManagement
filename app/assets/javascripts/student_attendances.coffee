@@ -20,8 +20,6 @@ $(document).on "turbolinks:load", ->
     $('#dateHidden').val($('#attendance_date').val())
 
 
-
-
 # var d = new Date(date);
 # d.setDate(d.getDate());
 # return new Date(d);

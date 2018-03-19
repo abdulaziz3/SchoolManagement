@@ -14,7 +14,7 @@ gem 'bootstrap-multiselect-rails'
 #charts
 gem 'chartkick'
 gem 'groupdate'
-gem 'active_median'
+#gem 'active_median'
 #contry-select + add city select + jquery
 gem 'country_select'
 # Use Uglifier as compressor for JavaScript assets

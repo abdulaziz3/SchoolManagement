@@ -28,7 +28,7 @@
         <td>|</td>
         <td><%= student_attendance.student.full_name %></td>
         <td><%= student_attendance.attendance_description.att_status %></td>
-        <td><%= student_attendance.date.strftime("%a: %d/%m/%Y") %></td>
+        <td><%= student_attendance.date.strftime("%B %e, %Y") %></td> <!-- ("%a: %d/%m/%Y")-->
         <td>|</td>
         <td><%= link_to 'Show', student_attendance, class: "btn btn-primary btn-xs glyphicon glyphicon-file" %></td>
         <td><%= link_to 'Edit', edit_student_attendance_path(student_attendance), class: "btn btn-primary btn-xs glyphicon glyphicon-pencil" %></td>

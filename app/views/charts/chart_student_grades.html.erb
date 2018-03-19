@@ -1,4 +1,4 @@
-<h1>Charts#chart_student_grades</h1>
-<p>Find me in app/views/charts/chart_student_grades.html.erb</p>
+<h1>chart_student_grades</h1>
+<!-- <p>Find me in app/views/charts/chart_student_grades.html.erb</p> -->
 
-<%= column_chart Student.group(:grade_id).count %>
+<%= column_chart Student.joins(:grade).group(:grade_name).count, xtitle: "Grades", ytitle: "Number", label: "Total students" %>

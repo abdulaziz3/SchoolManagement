@@ -1,4 +1,4 @@
 <h1>Charts#chart_user_roles</h1>
 <p>Find me in app/views/charts/chart_user_roles.html.erb</p>
 
-<%= column_chart User.group(:role_id).count %>
+<%= column_chart User.joins(:role).group(:role_name).count, label: 'Total users' %>

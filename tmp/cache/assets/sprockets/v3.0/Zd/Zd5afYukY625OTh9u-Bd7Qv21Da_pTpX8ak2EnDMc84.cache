@@ -1,0 +1,63 @@
+I">(function() {
+  $(document).on("turbolinks:load", function() {
+    var gradeValue, url;
+    url = document.location.href;
+    gradeValue = url.substring(url.indexOf("gradeValue=")).substring(11);
+    if (gradeValue.length > 0 && gradeValue.length < 4) {
+      document.getElementById('post_subject_id').value = gradeValue;
+    }
+    $('.selectGradeForAttend').change(function() {
+      var today, todayDate;
+      todayDate = $('#attendance_date').val();
+      today = new Date(todayDate);
+      if (today.getDay() > 0 && today.getDay() < 6) {
+        gradeValue = $('.selectGradeForAttend').val();
+        return document.location.href = "/student_attendances/new?gradeValue=" + gradeValue;
+      } else {
+        $('.selectGradeForAttend').prop('selectedIndex', 0);
+        return alert("It is a weekend, 'You cannot take attendance !'");
+      }
+    });
+    return $('#dateFieldAttendance').change(function() {
+      return $('#dateHidden').val($('#attendance_date').val());
+    });
+  });
+
+  jQuery(function() {
+    return Morris.Line({
+      element: 'attendances',
+      data: [
+        {
+          y: '2012',
+          a: 100
+        }, {
+          y: '2011',
+          a: 70
+        }, {
+          y: '2010',
+          a: 50
+        }, {
+          y: '2009',
+          a: 25
+        }, {
+          y: '2008',
+          a: 90
+        }, {
+          y: '2007',
+          a: 80
+        }, {
+          y: '2006',
+          a: 50
+        }, {
+          y: '2005',
+          a: 100
+        }
+      ],
+      xkey: 'y',
+      ykeys: ['x'],
+      labels: ['attendance']
+    });
+  });
+
+}).call(this);
+:ET
