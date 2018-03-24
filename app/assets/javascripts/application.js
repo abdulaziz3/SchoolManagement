@@ -17,26 +17,6 @@
 //= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require bootstrap-multiselect
-//= require highcharts
 //= require chartkick
 //= require turbolinks
 //= require_tree .
-
-// $(document).ready(function() {
-//
-//   $('#container').highcharts({
-//     xAxis: {
-//             min: 0,
-//             max:9
-//         },
-//     scrollbar: {
-//         enabled: true
-//     },
-//     yAxis: {
-//         min: 0,
-//         title: {
-//             text: 'Amount Distribution'
-//         }
-//     }
-//     })
-//   })

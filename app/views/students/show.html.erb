@@ -2,9 +2,11 @@
 <% content_for(:sidebar) do %>
   <%= render :partial => 'layouts/sidebar' %>
 <% end %>
- <%= pie_chart StudentAttendance.joins(:attendance_description).where("student_id = ?", @student.id).group(:att_status).count %>
+
+
 <div class="row">
   <div class="well col-xs-6 col-xs-offset-4 center">
+    <%= pie_chart StudentAttendance.joins(:attendance_description).where("student_id = ?", @student.id).group(:att_status).count, label: "total days" %>
     <!--p></br>Fisrt name : <%= @student.l_name %></p-->
     <p></br>Address : <%= @student.address%></p>
     <p></br>City : <%= @student.city%></p>

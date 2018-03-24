@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorised
-    unless student_signed_in? || parent_signed_in? || user_signed_in?
+    unless student_signed_in? || user_signed_in?
       redirect_to root_path
       flash[:danger] = "sign in first"
     end
@@ -29,14 +29,14 @@ class ApplicationController < ActionController::Base
       flash[:danger] = "Staff must sing in to get access"
     end
   end
-
-  def parent_authorise
-    unless parent_signed_in?
-      store_location
-      redirect_to parent_login_path
-      flash[:danger] = "Parent must sing in to get access"
-    end
-  end
+  #
+  # def parent_authorise
+  #   unless parent_signed_in?
+  #     store_location
+  #     redirect_to parent_login_path
+  #     flash[:danger] = "Parent must sing in to get access"
+  #   end
+  # end
 
   private
 
@@ -45,6 +45,8 @@ class ApplicationController < ActionController::Base
   end
 
   def conversation
+    p "Test"
+    p params
     @conversation ||= mailbox.conversations.find(params[:id])
   end
 

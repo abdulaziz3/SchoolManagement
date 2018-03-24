@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 	VALID_EMAIL_VAL = /\A[\w+\-.]+@[A-z\d\-.]+\.[a-z]+\z/i
 	before_save {self.email = email.downcase}
 	validate :unique_student_email
-	validate :unique_parent_email
 
 	belongs_to :role
 	has_many :subjects
@@ -51,10 +50,6 @@ class User < ActiveRecord::Base
 
 	def unique_student_email
 		self.errors.add(:email, 'Email is already taken by student') if Student.where(email: self.email).exists?
-	end
-
-	def unique_parent_email
-		self.errors.add(:email, 'Email is already taken by Parent') if Parent.where(email: self.email).exists?
 	end
 
 end

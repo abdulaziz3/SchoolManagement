@@ -18,10 +18,6 @@ class ConversationsController < ApplicationController
       recepient.type = "Student"
       @userListMail << recepient
     end
-    ##########
-     # @users = User.all
-     # @students = Student.all
-     # @all_users = @users | @students
   end
 
   def create
@@ -39,20 +35,8 @@ class ConversationsController < ApplicationController
         end
       end
     end
-  #   if student_signed_in?
-  #   recipients = User.where(id: params[:id][:id])
-  # elsif user_signed_in?
-  #   # stud_reci = Student.where(id: conversation_params[:recipients])
-  #   # user_reci = User.where(id: conversation_params[:recipients])
-  #   # recipients = user_reci | stud_reci
-  #   recipients = Student.where(id: params[:id][:id])
-  # end
-  # p "recipients"
-  # p @recipients
-  # p Student.all
-    # conversation = @current_user.send_message(@recipients, conversation_params[:body], conversation_params[:subject]).conversation
-    flash[:success] = "Your message was successfully sent!"
-    redirect_to conversation_path(conversation)
+    flash[:success] = "Your message was sent!"
+    redirect_to conversation_path(@conversation)
   end
 
   def show
@@ -83,7 +67,7 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_params
-    params.require(:conversation).permit(:subject, :body,recipients:[])
+    params.require(:conversation).permit(:subject, :body, recipients:[])
   end
 end
 

@@ -1,3 +1,83 @@
-<h1 align = "center">Attendance chart</h1><br>
+<!-- <h1 align = "center">Attendance chart</h1><br> -->
 
-<%= line_chart StudentAttendance.joins(:attendance_description).group(:att_status).group_by_day(:date, format: "%a %d-%m-%Y").count %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $('#attendance_chart').highcharts({
+
+      chart: {
+          type: 'line',
+          zoomType: 'x'
+      },
+      title: {
+          text: 'Student Attendance Report'
+      },
+      credits: {
+          enabled: true,
+          position: {
+              align: 'right',
+              x: -10,
+              verticalAlign: 'bottom',
+              y: -5
+          },
+      },
+      xAxis: {
+          categories: <%= raw attendance_chart_categories %>,
+          min: 0,
+          max:9
+      },
+      scrollbar: {
+          enabled: true
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Total number'
+          }
+      },
+      legend: {
+          shadow: false
+      },
+      tooltip: {
+        formatter: function () {
+          var tooltip = this.x + '<br/>';
+          var count = 0;
+          <% AttendanceDescription.all.each do |attdesc| %>
+            var s1 = this.series.chart.series[count].processedYData[this.point.index];
+            tooltip = tooltip + '<b>' + this.series.chart.series[count].name + ' :' + s1 + '</b><br/>'
+            count = count + 1;
+          <% end %>
+            tooltip = tooltip;
+            return tooltip
+        },
+        valueDecimals: 0,
+        crosshairs: [{
+            width: 1,
+            color: 'Gray'
+        }, {
+            width: 0,
+            // color: 'gray'
+        }]
+      },
+      plotOptions: {
+          column: {
+              pointPadding: 0.2,
+              borderWidth: 0.1
+          }
+      },
+      series: [
+        <% AttendanceDescription.all.each do |attdesc| %>
+        {
+          name: "<%= attdesc.att_status %>",
+          data: <%= attendance_chart_series(attdesc.att_status) %>,
+          // pointStart: <%= StudentAttendance.order("date asc")[0].date.to_datetime.to_i * 1000 %>,
+          // pointInterval: <%= 1.day * 1000 %>,
+        },
+        <% end %>
+      ]
+      });
+  });
+</script>
+
+
+<div id="attendance_chart" style="width:1100px; height:400px;"></div>

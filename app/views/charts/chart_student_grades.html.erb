@@ -1,4 +1,9 @@
-<h1>chart_student_grades</h1>
+<!-- <h1>chart_student_grades</h1> -->
+<h1>Grades</h1></br>
 <!-- <p>Find me in app/views/charts/chart_student_grades.html.erb</p> -->
-
+<h1><small>Total number of students in each grade</small></h1>
 <%= column_chart Student.joins(:grade).group(:grade_name).count, xtitle: "Grades", ytitle: "Number", label: "Total students" %>
+<h1><small>Total number of subjects in each grade</small></h1>
+<%= column_chart Subject.joins(:grade).group(:grade_name).count, xtitle: "Grades", ytitle: "Number", label: "Total subjects" %>
+
+<%= line_chart StudentAttendance.joins(:attendance_description).group(:att_status).group_by_day(:date, format: "%a %d-%m-%Y").count %>

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :student_parents
   # resources :messages
   resources :lessons
@@ -18,7 +17,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :students
 
-  # Sessions Log in - Log out // user && studends
+###### Sessions Log in - Log out // user && studends
   controller :sessions do
 		get 'student_login' => :new
 		post 'student_login' => :create
@@ -36,7 +35,7 @@ Rails.application.routes.draw do
     delete 'parent_logout' => :parentdestroy
 	end
 
-  ####### CHARTS
+###### CHARTS
   namespace :charts do
     get 'chart-attendance'
     get 'chart_student_grades'
@@ -44,34 +43,36 @@ Rails.application.routes.draw do
     get 'chart_student_marke_grades'
   end
 
-  get 'search' => 'users#search'
-  get 'searchAttendance' => 'student_attendances#searchAttendance'
-
+###### Static pages
   namespace :pages do
     get 'home'
     get 'about'
     get 'faqs'
   end
 
-## marks and attendance
+###### Searches
+  get 'search' => 'users#search'
+  get 'searchAttendance' => 'student_attendances#searchAttendance'
+
+###### Marks and Attendance
   post 'student_attendances/saveAttendance'
   post 'marks/saveMarks'
 
-##Home root
+###### Root "Home"
   root :to => "pages#home"
 
-##Mailboxer routes
+###### Mailboxer routes
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 
-  # conversations
-      resources :conversations do
-        member do
-          post :reply
-          post :trash
-          post :untrash
-        end
-      end
+###### Conversations
+  resources :conversations do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
 
 end

@@ -1,12 +1,11 @@
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
       <%= f.label :recipients %>
-      <% if student_signed_in? %>
+      <!--% if student_signed_in? %-->
+      <!--%= f.select(:recipients, @userListMail.collect {|p| [ p.full_name, p.id ] }, {}, { multiple: true , class: "chosen-select form-control" })%-->
+      <!--% else %-->
       <%= f.select(:recipients, @userListMail.collect {|p| [ p.full_name, p.id ] }, {}, { multiple: true , class: "chosen-select form-control" })%>
-      <% else %>
-      <!-- <%= collection_select :id,:id, @all_users, :id, :full_name, {prompt: "All Templates"} %> -->
-      <%= f.select(:recipients, @userListMail.collect {|p| [ p.full_name, p.id ] }, {}, { multiple: true , class: "chosen-select form-control" })%>
-      <% end %>
+      <!--% end %-->
     </div>
     <div class="form-group">
       <%= f.label :subject %>
